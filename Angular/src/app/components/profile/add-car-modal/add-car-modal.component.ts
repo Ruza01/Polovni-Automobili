@@ -11,9 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-add-car-modal',
-  templateUrl: './add-car-modal.component.html',
-  styleUrls: ['./add-car-modal.component.css']
+    selector: 'app-add-car-modal',
+    templateUrl: './add-car-modal.component.html',
+    styleUrls: ['./add-car-modal.component.css'],
+    standalone: false
 })
 export class AddCarModalComponent implements OnInit{
 

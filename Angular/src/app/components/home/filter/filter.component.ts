@@ -6,9 +6,10 @@ import { Car } from 'src/app/Models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+    selector: 'app-filter',
+    templateUrl: './filter.component.html',
+    styleUrls: ['./filter.component.css'],
+    standalone: false
 })
 export class FilterComponent {
 

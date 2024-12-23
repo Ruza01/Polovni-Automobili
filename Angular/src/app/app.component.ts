@@ -5,9 +5,10 @@ import { Store } from '@ngrx/store';
 import { getErrorMsg, getLoading } from './store/shared/shared.selector';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 
 export class AppComponent implements OnInit {

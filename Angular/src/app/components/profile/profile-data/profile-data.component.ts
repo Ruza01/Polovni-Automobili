@@ -8,9 +8,10 @@ import { AppState } from 'src/app/store/app.state';
 import { updateUser } from '../state/profile.action';
 
 @Component({
-  selector: 'app-profile-data',
-  templateUrl: './profile-data.component.html',
-  styleUrls: ['./profile-data.component.css']
+    selector: 'app-profile-data',
+    templateUrl: './profile-data.component.html',
+    styleUrls: ['./profile-data.component.css'],
+    standalone: false
 })
 
 

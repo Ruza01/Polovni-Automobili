@@ -7,9 +7,10 @@ import { deleteCar, getCars } from '../../car/state/car.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-car-card',
-  templateUrl: './car-card.component.html',
-  styleUrls: ['./car-card.component.css']
+    selector: 'app-car-card',
+    templateUrl: './car-card.component.html',
+    styleUrls: ['./car-card.component.css'],
+    standalone: false
 })
 export class CarCardComponent implements OnInit{
 

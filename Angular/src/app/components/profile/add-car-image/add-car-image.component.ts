@@ -7,9 +7,10 @@ import { AppState } from 'src/app/store/app.state';
 
 
 @Component({
-  selector: 'app-add-car-image',
-  templateUrl: './add-car-image.component.html',
-  styleUrls: ['./add-car-image.component.css']
+    selector: 'app-add-car-image',
+    templateUrl: './add-car-image.component.html',
+    styleUrls: ['./add-car-image.component.css'],
+    standalone: false
 })
 export class AddCarImageComponent {
 

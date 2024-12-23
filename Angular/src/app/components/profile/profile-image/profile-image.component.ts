@@ -10,9 +10,10 @@ import { getProfileImagee, uploadProfileImage } from '../state/profile.action';
 import { AppState } from 'src/app/store/app.state';
 
 @Component({
-  selector: 'app-profile-image',
-  templateUrl: './profile-image.component.html',
-  styleUrls: ['./profile-image.component.css']
+    selector: 'app-profile-image',
+    templateUrl: './profile-image.component.html',
+    styleUrls: ['./profile-image.component.css'],
+    standalone: false
 })
 export class ProfileImageComponent implements OnInit {
   

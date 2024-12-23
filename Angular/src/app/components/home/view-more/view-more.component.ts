@@ -6,9 +6,10 @@ import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 import { getCars } from '../../car/state/car.action';
 
 @Component({
-  selector: 'app-view-more',
-  templateUrl: './view-more.component.html',
-  styleUrls: ['./view-more.component.css']
+    selector: 'app-view-more',
+    templateUrl: './view-more.component.html',
+    styleUrls: ['./view-more.component.css'],
+    standalone: false
 })
 export class ViewMoreComponent implements OnInit {
   
