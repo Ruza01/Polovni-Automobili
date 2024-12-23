@@ -1,7 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule }  from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi }  from '@angular/common/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects';
 import { MatCardModule } from '@angular/material/card';
@@ -21,38 +21,31 @@ import { CarEffects } from './components/car/state/car.effects';
 import { ProfileEffects } from './components/profile/state/profile.effects';
 import { CarModule } from './components/car/car.module';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    ProfileModule,
-    UserAuthModule,
-    EffectsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-    HomeModule,
-    CarModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, 
-      logOnly: !isDevMode(), 
-      autoPause: true, 
-      trace: false, 
-      traceLimit: 75, 
-    }),
-    EffectsModule.forRoot([CarEffects,ProfileEffects]),
-    StoreModule.forRoot(appReducer),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        ProfileModule,
+        UserAuthModule,
+        EffectsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        FormsModule,
+        HomeModule,
+        CarModule,
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: !isDevMode(),
+            autoPause: true,
+            trace: false,
+            traceLimit: 75,
+        }),
+        EffectsModule.forRoot([CarEffects, ProfileEffects]),
+        StoreModule.forRoot(appReducer)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }

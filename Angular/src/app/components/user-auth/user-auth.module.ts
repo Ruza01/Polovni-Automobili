@@ -10,25 +10,18 @@ import { AuthReducer } from './state/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/auth.effects';
 import {UserAuthService} from './user-auth.service'
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
-@NgModule({
-  declarations: [
-    LoginComponent,
-    SignupComponent,
-    LoadingSpinnerComponent
-  ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    EffectsModule.forFeature([AuthEffects]),
-    StoreModule.forFeature(AUTH_STATE_NAME,AuthReducer)
-  ],
-  exports:[LoadingSpinnerComponent],
-  providers:[UserAuthService]
-})
+@NgModule({ declarations: [
+        LoginComponent,
+        SignupComponent,
+        LoadingSpinnerComponent
+    ],
+    exports: [LoadingSpinnerComponent], imports: [CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        EffectsModule.forFeature([AuthEffects]),
+        StoreModule.forFeature(AUTH_STATE_NAME, AuthReducer)], providers: [UserAuthService, provideHttpClient(withInterceptorsFromDi())] })
 export class UserAuthModule { }
