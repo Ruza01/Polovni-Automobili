@@ -37,7 +37,6 @@ import { ViewMoreComponent } from './view-more/view-more.component';
       MatMenuModule,
       MatTabsModule,
       MatButtonToggleModule,
-      FontAwesomeModule,
       MatCardModule,
       MatFormFieldModule,
       MatInputModule,
