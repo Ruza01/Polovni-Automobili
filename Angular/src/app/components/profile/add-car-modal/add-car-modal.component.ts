@@ -74,8 +74,8 @@ export class AddCarModalComponent implements OnInit{
       for (let i = 0; i < files.length; i++) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
-          this.images.push(e.target.result);  //dodaje rezultat citanja
-          const newImages = [...this.images, e.target.result];//kreira novi niz koji sadrzi slike iz this.images + nova slika
+          this.images.push(e.target.result);  
+          const newImages = [...this.images, e.target.result];
           this.store.dispatch(addCarImages({ images: newImages }));
         };
         reader.readAsDataURL(files[i]);

@@ -17,7 +17,6 @@ import { RouterModule } from "@angular/router";
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { FilterComponent } from './filter/filter.component';
-import { InfoComponent } from './info/info.component';
 import { ViewMoreComponent } from './view-more/view-more.component';
 
 
@@ -26,7 +25,6 @@ import { ViewMoreComponent } from './view-more/view-more.component';
       CarCardComponent,
       HomeComponent,
       FilterComponent,
-      InfoComponent,
       ViewMoreComponent,
     ],
     imports: [

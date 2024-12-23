@@ -21,7 +21,7 @@ export class ProfileImageComponent implements OnInit {
   user!: Observable<User | null >;
 
   constructor(private profileService: ProfileService, private store: Store<AppState>){
-    this.store.select(getUserId).subscribe(id => this.id = id);   //prati ako dodje do promene neke i odmah se izvrsi ako bude promene
+    this.store.select(getUserId).subscribe(id => this.id = id);   
     this.store.dispatch(getProfileImagee({ id: this.id }));       
   }
 

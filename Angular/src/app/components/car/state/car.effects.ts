@@ -47,7 +47,7 @@ export class CarEffects {
     getCars$ = createEffect(() =>
         this.actions$.pipe(
           ofType(getCars),
-          mergeMap(() => this.carService.getCars().pipe(   //operator koji obezbedjuje da se svaka nova akcija getCars pokrene, cak i ako je prethodni getCars API poziv jos u toku
+          mergeMap(() => this.carService.getCars().pipe(   
               map((cars: Car[]) => getCarsSuccess({ cars })),
               catchError(() => of({ type: 'Get cars failed' })) 
             )

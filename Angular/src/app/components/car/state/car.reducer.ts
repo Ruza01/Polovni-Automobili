@@ -16,7 +16,7 @@ const _carReducer = createReducer(initialState,
       on(getCarsSuccess, (state, { cars }) => ({
       ...state, 
       cars,
-      images: cars.flatMap(car => car.images) //skupi sve slike svih automobila u jedan niz
+      images: cars.flatMap(car => car.images) 
       })),
       on(getCarsByStanjeSuccess, (state, { cars }) => ({
         ...state,
