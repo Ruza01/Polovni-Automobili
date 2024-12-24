@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Car } from "./entities/car.entity";
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { UserService } from "../user/user.service";
 import { carDto } from "./DTOs/car.dto";
 import { carImages } from "./entities/carImages.entity";
@@ -83,8 +83,11 @@ export class CarService {
         }
     }
 
-    async getCarsByStanje(stanjee: string){
-        return Car.find({ relations: ['user', 'images'], 
+    async getCarsByFilter(value: string, filterType: string){
+        const whereCondition = this.buildWhereCondition(value,filterType);
+
+        return Car.find({ 
+            relations: ['user', 'images'], 
             select: {
             user:{
                 username: true
@@ -92,12 +95,40 @@ export class CarService {
             images: {
                 id: true,
                 imagePath: true,
-                
             }
-            }, where: stanjee? {stanje: stanjee}: undefined
+            }, where: whereCondition,
 
         });
     }
+
+  private buildWhereCondition(value: string, filterType: string) {
+    let whereCondition = {};
+    
+    switch (filterType) {
+      case 'marka':
+        whereCondition = { marka: value }; 
+        break;
+      case 'karoserija':
+        whereCondition = { karoserija: value }; 
+        break;
+      case 'godiste':
+        whereCondition = { godiste: value }; 
+        break;
+      case 'gorivo':
+        whereCondition = { gorivo: value }; 
+        break;
+      case 'kubikaza':
+        whereCondition = { kubikaza: value }; 
+        break;
+      case 'snagaMotora':
+        whereCondition = { snagaMotora: value }; 
+        break;
+      default:
+        whereCondition = {}; 
+    }
+
+    return whereCondition;
+  }
 
     
 }

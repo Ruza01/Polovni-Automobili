@@ -1,4 +1,4 @@
-import { Controller, Post, Get, UseInterceptors, UploadedFiles, Param, ParseIntPipe, Res, Patch, Body, Delete } from '@nestjs/common';
+import { Controller, Post, Get, UseInterceptors, UploadedFiles, Param, ParseIntPipe, Res, Patch, Body, Delete, Query } from '@nestjs/common';
 import { CarService } from './car.service';
 import { carDto } from './DTOs/car.dto';
 
@@ -23,9 +23,9 @@ export class CarController {
         return this.carService.deleteCar(id);
     }
 
-    @Get('getCarsByStanje/:stanje')
-    async getCarsByStanje(@Param('stanje') stanje: string){
-        return this.carService.getCarsByStanje(stanje);
+    @Get('getCarsByFilter')
+    async getCarsByFilter(@Query('value') value: string, @Query('filterType') filterType: string){
+        return this.carService.getCarsByFilter(value,filterType);
     }
 
 

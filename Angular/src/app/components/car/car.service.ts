@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AddCarDto } from "src/app/Dto/add-car.dto";
@@ -12,7 +12,6 @@ const api = "http://localhost:3000";
 })
 
 export class CarService {
-    
     constructor(private httpClient: HttpClient){
 
     }
@@ -37,9 +36,12 @@ export class CarService {
         return this.httpClient.delete<void>(`${api}/car/deleteCar/${carId}`);
     }
 
-    getCarsByStanje(stanje: string){
-        return this.httpClient.get<Car[]>(`${api}/car/getCarsByStanje/${stanje}`);
+    getCarsByFilter(value: string, filterType: string) {
+        const params = new HttpParams()
+        .set('value',value)
+        .set('filterType', filterType);
+        return this.httpClient.get<Car[]>(`${api}/car/getCarsByFilter`, {params});
     }
-
+      
     
 }

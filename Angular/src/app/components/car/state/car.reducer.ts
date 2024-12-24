@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CarState, initialState } from "./car.state";
-import { addCar, addCarImages, addCarSucces, deleteCarSucces, getCars, getCarsByStanjeSuccess, getCarsSuccess } from "./car.action";
+import { addCar, addCarImages, addCarSucces, deleteCarSucces, getCars, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
 
 
 const _carReducer = createReducer(initialState,
@@ -18,7 +18,7 @@ const _carReducer = createReducer(initialState,
       cars,
       images: cars.flatMap(car => car.images) 
       })),
-      on(getCarsByStanjeSuccess, (state, { cars }) => ({
+      on(getCarsByFilterSuccess, (state, { cars }) => ({
         ...state,
         cars,
         })),

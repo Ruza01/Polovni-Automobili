@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getCarsByStanje } from '../../car/state/car.action';
-import { Observable } from 'rxjs';
+import { last, Observable } from 'rxjs';
 import { Car } from 'src/app/Models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
+import { MenuItem } from 'primeng/api';
+import { getCarsByFilter } from '../../car/state/car.action';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-filter',
@@ -11,104 +13,111 @@ import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
     styleUrls: ['./filter.component.css'],
     standalone: false
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit{
 
-  isButtonClicked: boolean = false;
-  clickedButtonIndex: number = -1;
-  inputValue1: string = "";
-  inputValue2: string = "";
-  inputValue3: string = "";
-  inputValue4: string = "";
-  inputValue5: string = "";
-  inputValue6: string = "";
-  inputValue7: string = "";
-  inputValue8: string = "";
-  inputValue9: string = "";
   cars$: Observable<Car[]>;
   images$: Observable<string[]>;
+  items: MenuItem[] = [];
+  allCars: Car[] = [];
 
-  constructor(private store: Store){
+  constructor(private store: Store, private router: Router){
     this.cars$ = this.store.select(selectAllCars);
     this.images$ = this.store.select(selectAllImages);
   }
 
-  performAction(index: number){
-    this.clickedButtonIndex = index;
-    switch(index){
-      case 1:
-        this.performAction1();
-      break;
-      case 2:
-        this.performAction2();
-      break;
-      case 3:
-        this.performAction3();
-      break;
-      case 4:
-        this.performAction4();
-      break;
-      case 5:
-        this.performAction5();
-      break;
-      case 6:
-        this.performAction6();
-      break;
-      case 7:
-        this.performAction7(); 
-      break;
-      case 8:
-        this.performAction8();
-      break;
-      case 9:
-        this.performAction9();
-      break;
-
-    }
+  ngOnInit() {
+    this.cars$.subscribe((cars) => {
+      this.allCars = cars;
+      this.fillTheMenue(cars);  
+    });
   }
 
-  performAction1() {
-    this.isButtonClicked = true; 
-    this.store.dispatch(getCarsByStanje( {stanje: this.inputValue1} ));
-     
+
+  fillTheMenue(cars: Car[]){
+    const uniqueKaroserije = Array.from(new Set(cars.map(car => car.karoserija))); //Set eliminisanje duplikate 
+    const uniqueMarke = Array.from(new Set(cars.map(car => car.marka))); 
+    const uniqueGorivo = Array.from(new Set(cars.map(car => car.gorivo))); 
+    const uniqueGodiste = Array.from(new Set(cars.map(car => car.godiste)));
+    const uniqueKubikaza = Array.from(new Set(cars.map(car => car.kubikaza)));
+    const uniqueSnagaMotora = Array.from(new Set(cars.map(car => car.snagaMotora)));
+
+    this.items = [
+      {
+          label: 'Marka',
+          icon: 'pi pi-car',
+          items: uniqueMarke.map((marka) => ({
+            label: marka,
+            icon: 'pi pi-tag',
+            command: () => this.onMenuItemClick(marka.toString(), 'marka'),
+            
+          })),
+      },
+      {
+        label: 'Karoserija',
+        icon: 'pi pi-wrench',
+        items: uniqueKaroserije.map((karoserija) => ({
+          label: karoserija,
+          icon: 'pi pi-cog',
+          command: () => this.onMenuItemClick(karoserija.toString(), 'karoserija')
+        }))
+      },
+      {
+        label: 'Vrsta Goriva',
+        icon: 'pi pi-gauge',
+        items: uniqueGorivo.map((gorivo) => ({
+          label: gorivo,
+          icon: 'pi pi-sun',
+          command: () => this.onMenuItemClick(gorivo.toString(), 'gorivo')
+        }))
+      },
+      {
+        label: 'Godiste',
+        icon: 'pi pi-calendar',
+        items: uniqueGodiste.map((godiste) => ({
+          label: godiste.toString(),
+          icon: 'pi pi-calendar-times',
+          command: () => this.onMenuItemClick(godiste.toString(), 'godiste')
+        }))
+      },
+      {
+        label: 'Kubikaza',
+        icon: 'pi pi-cog', 
+        items: uniqueKubikaza.map((kubikaza) => ({
+          label: kubikaza.toString()  + ' cm³ ',
+          icon: 'pi pi-random',
+          command: () => this.onMenuItemClick(kubikaza.toString(), 'kubikaza')
+        }))
+      },
+      {
+        label: 'Snaga (KW)',
+        icon: 'pi pi-power-off',
+        items: uniqueSnagaMotora.map((sMotora) => ({
+          label: sMotora.toString(),
+          icon: 'pi pi-bolt',
+          command: () => this.onMenuItemClick(sMotora.toString(), 'snagaMotora')
+        }))
+      },
+    ]
+
   }
 
-  performAction2() {
-    this.isButtonClicked = true; 
-    console.log('Uneta vrednost u input-u je:', this.inputValue2);
+  onMenuItemClick( value: string, filterType: string){
+    this.store.dispatch(getCarsByFilter( {value, filterType} ));
+    
+      this.fillTheMenue(this.allCars);
+      
+    ;
   }
 
-  performAction3() {
-    this.isButtonClicked = true; 
-    console.log('Uneta vrednost u input-u je:', this.inputValue3);
-  }
+  resetFilters() {
+    this.store.dispatch(getCarsByFilter({ value: '', filterType: '' }));
 
-  performAction4() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue4); 
+    this.cars$.subscribe((cars) => {
+      this.allCars = cars; 
+      this.fillTheMenue(cars); 
+    });
   }
-
-  performAction5() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue5); 
-  }
-
-  performAction6() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue6); 
-  }
-
-  performAction7() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue7); 
-  }
-
-  performAction8() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue8); 
-  }
-
-  performAction9() {
-    this.isButtonClicked = true;
-    console.log('Uneta vrednost u input-u je:', this.inputValue9); 
-  }
+  
 }
+
+  

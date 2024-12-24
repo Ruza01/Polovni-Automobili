@@ -18,7 +18,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { FilterComponent } from './filter/filter.component';
 import { ViewMoreComponent } from './view-more/view-more.component';
-
+import { PanelMenu } from 'primeng/panelmenu';
+import { BrowserModule } from "@angular/platform-browser";
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
@@ -45,6 +47,10 @@ import { ViewMoreComponent } from './view-more/view-more.component';
       BrowserAnimationsModule,
       RouterModule,
       MatDividerModule,
+      PanelMenu,
+      BrowserModule,
+      ButtonModule
+
     ]
 })
 

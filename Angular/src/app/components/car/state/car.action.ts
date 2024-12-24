@@ -13,5 +13,5 @@ export const getCarsSuccess = createAction('Get cars success', props<{ cars: Car
 export const deleteCar = createAction('Delete car', props< { carId: number } >() );
 export const deleteCarSucces = createAction('Delete car Success', props< { carId: number} >() );
 
-export const getCarsByStanje = createAction('Get cars by stanje', props<{ stanje: string }>() );
-export const getCarsByStanjeSuccess = createAction('Get cars by stanje success', props<{ cars: Car[] }>() );
+export const getCarsByFilter = createAction('Get cars by filter', props<{ value: string, filterType: string }>() );
+export const getCarsByFilterSuccess = createAction('Get cars by stanje success', props<{ cars: Car[] }>() );
