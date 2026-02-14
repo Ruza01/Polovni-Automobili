@@ -1,0 +1,33 @@
+<div class="form-fields-container" *ngIf="user$ | async as user">  
+    <mat-form-field class="example-form-field" id="inputName">
+        <mat-label>Input name</mat-label>
+        <input matInput type="text" [(ngModel)]="user.name" #nameInput> <!--Ovako referenciramo vrednost input elementa ukoliko ono postoji a zelimo da je promenimo -->
+        <button *ngIf="value1" matSuffix mat-icon-button aria-label="Clear" (click)="updateField('name', nameInput.value, user.id)">
+        <mat-icon style="color: orange;">edit</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" id="inputSurname">
+        <mat-label>Input surname</mat-label>
+        <input matInput type="text" [(ngModel)]="user.surname" #surnameInput>
+        <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="updateField('surname', surnameInput.value, user.id)">
+        <mat-icon style="color: orange;">edit</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" id="inputUsername">
+        <mat-label>Input username</mat-label>
+        <input matInput type="text" [(ngModel)]="user.username" #usernameInput>
+        <button *ngIf="value3" matSuffix mat-icon-button aria-label="Clear" (click)="updateField('username', usernameInput.value, user.id)">
+        <mat-icon style="color: orange;">edit</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" id="inputEmail">
+        <mat-label>Input email</mat-label>
+        <input matInput type="text" [(ngModel)]="user.email" #emailInput>
+        <button *ngIf="value4" matSuffix mat-icon-button aria-label="Clear" (click)="updateField('email', emailInput.value, user.id)">
+        <mat-icon style="color: orange;">edit</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

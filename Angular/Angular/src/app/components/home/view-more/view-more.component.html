@@ -1,0 +1,48 @@
+<div *ngIf="car" class="divStreliceNaziv">
+  <p class="nazivDiv">{{car.marka}} {{car.model}}</p>
+  <div class="streliceDiv"> 
+  <button class="arrow-button"  (click)="stepBack1()"><</button>
+  <button class="arrow-button" (click)="stepForward1()">></button>
+</div>
+  <div class="labelCena">{{car.cena}}€</div>
+</div>
+<div class="divSlikaInfo">
+  <div class="divZaSliku1">
+    <img *ngIf="car" [src]="car.images[currentImageIndex].imagePath" id="slika1">
+  </div>
+  <div *ngIf="car" class="divPodaci">
+    <h3 class="opsteInfo"> Opste informacije </h3>
+    <div class="divGodiste" style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelGodiste">Godiste: </label> <span class="spanGodiste">{{car.godiste}}</span>
+    </div>
+    <div class="divStanje" style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelStanje">Stanje:</label>  <span class="spanStanje">{{car.stanje}}</span>
+    </div>
+    <div class="divMarka"  style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelMarka">Marka: </label> <span class="spanMarka">{{car.marka}}</span>
+    </div>
+    <div class="divModel" style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelModel">Model: </label> <span class="spanModel">{{car.model}}</span>
+    </div>
+    <div class="divKilometraza" style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelKilometraza">Kilometraza: </label> <span class="spanKilometraza">{{car.kilometraza}}km</span>
+    </div>
+    <div class="divKaroserija"  style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelKaroserija">Karoserija: </label> <span class="spanKaroserija">{{car.karoserija}}</span>
+    </div>
+    <div class="divGorivo"  style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelGorivo">Gorivo: </label> <span class="spanGorivo">{{car.gorivo}}</span>
+    </div>
+    <div class="divKubikaza"  style="margin-top: 10px; border-bottom: 1px solid orange;">
+      <label class="labelKubikaza">Kubikaza: </label> <span class="spanKubikaza">{{car.kubikaza}}cm3</span>
+    </div>
+  </div>
+</div>
+<div class="divRegistracijaKasko">
+  <div class="divReg">
+    Cena registracije ovog vozila: od <span class="zelenaBoja"> {{registration}} </span> do <span class="zelenaBoja"> {{registration + 20000}} </span> 
+  </div>
+  <div class="divKasko">
+    Cena KASKO osiguranja za ovo vozilo: od <span class="zelenaBoja"> {{kasko}} </span> do <span class="zelenaBoja"> {{kasko + 70000}} </span> 
+  </div>
+</div>

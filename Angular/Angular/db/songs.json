@@ -1,0 +1,39 @@
+{
+    "songs": [
+        {
+            "id": 1,
+            "title": "Baby Shark Dance",
+            "artist": "Pinkfong Baby Shark - Kids' Songs & Stories",
+            "viewsCount": 10.4,
+            "link": ""
+        },
+        {
+            "id": 2,
+            "title": "Johny Johny Yes Papa",
+            "artist": "Looloo Kids",
+            "viewsCount": 6.27,
+            "link": ""
+        },
+        {
+            "id": 3,
+            "title": "Shape of You",
+            "artist": "Ed Sheeran",
+            "viewsCount": 5.67,
+            "link": ""
+        },
+        {
+            "id": 4,
+            "title": "See You Again",
+            "artist": "Wiz Khalifa",
+            "viewsCount": 5.47,
+            "link": "RgKAFK5djSk"
+        },
+        {
+            "id": 5,
+            "title": "Despacito",
+            "artist": "Louis Fonsi",
+            "viewsCount": 7.81,
+            "link": "kJQP7kiw5Fk"
+        }
+    ]
+}
