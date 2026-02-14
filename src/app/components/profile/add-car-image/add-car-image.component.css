@@ -1,0 +1,11 @@
+
+#carCardd{
+    margin-top: 15px;
+}
+
+#imgCarr{
+    height: 200px;
+    width: 300px;
+    border: 4px solid black;
+    border-radius: 40px;
+}
