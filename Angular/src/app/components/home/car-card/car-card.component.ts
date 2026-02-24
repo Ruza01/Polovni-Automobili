@@ -22,13 +22,11 @@ export class CarCardComponent implements OnInit{
   constructor(private store: Store, private snackBar: MatSnackBar){
     this.cars$ = this.store.select(selectAllCars);
     this.images$ = this.store.select(selectAllImages);
-    
   }
 
   toggleContent(car: Car){
     this.selectedCar = car;
     this.showAdditionalContent = true;
-    
   }
 
   closeAdditionalContent(){
@@ -49,7 +47,6 @@ export class CarCardComponent implements OnInit{
     this.images$.subscribe(images => {
       console.log("Slike", images);
     })
-    
   }
 
   onCloseViewMore(){

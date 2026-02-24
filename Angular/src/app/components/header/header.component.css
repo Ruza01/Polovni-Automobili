@@ -9,7 +9,6 @@
     border-radius: 20px;
     height: 40px;
     width: 100px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .clicked {
@@ -88,6 +87,46 @@
     height: 40px;
     width: 100px;
 }
+
+.example-header-image {
+  background-size: cover;
+}
+
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    
+  display: block;
+  margin-top: 0xp;
+  border-radius: 10px;
+}
+
+.No-profile-picture {
+    height: 200px;
+    object-fit: scale-down;
+}
+
+.example-card {
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    margin-top: 0px;
+    margin-left: 180px;
+    border-radius: 20px;
+}
+
+.mat-card-header-header{
+    display: flex;
+    padding: 6px;
+    border-radius: 20px;
+}
+
+.example-card {
+    position: absolute;
+    left: 850px;
+}
+
 
 
 

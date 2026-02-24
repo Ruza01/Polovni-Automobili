@@ -18,9 +18,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { FilterComponent } from './filter/filter.component';
 import { ViewMoreComponent } from './view-more/view-more.component';
-import { PanelMenu } from 'primeng/panelmenu';
 import { BrowserModule } from "@angular/platform-browser";
-import { ButtonModule } from 'primeng/button';
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
     declarations: [
@@ -37,6 +36,7 @@ import { ButtonModule } from 'primeng/button';
       MatToolbarModule,
       MatIconModule,
       MatMenuModule,
+      MatSelectModule,
       MatTabsModule,
       MatButtonToggleModule,
       MatCardModule,
@@ -47,10 +47,7 @@ import { ButtonModule } from 'primeng/button';
       BrowserAnimationsModule,
       RouterModule,
       MatDividerModule,
-      PanelMenu,
       BrowserModule,
-      ButtonModule
-
     ]
 })
 

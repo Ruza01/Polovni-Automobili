@@ -19,22 +19,30 @@ export class ProfileImageComponent implements OnInit {
   
   imageUrl!: Observable<SafeUrl>;
   id!: number | undefined;
-  user!: Observable<User | null >;
+  user$!: Observable<User | null >;
+  previewImage: string | ArrayBuffer | null = null;
 
   constructor(private profileService: ProfileService, private store: Store<AppState>){
-    this.store.select(getUserId).subscribe(id => this.id = id);   
-    this.store.dispatch(getProfileImagee({ id: this.id }));       
+    this.store.select(getUserId).subscribe(id => {
+      this.id = id;
+      if (id) {
+        this.store.dispatch(getProfileImagee({ id }));
+      }
+    });
   }
 
   ngOnInit(): void {
     this.imageUrl = this.store.select(getProfileImage); 
-    this.user = this.store.select(getUser);
+    this.user$ = this.store.select(getUser);
   }
 
   uploadImage(event: Event){
     const inputFile = <HTMLInputElement>(event.target); 
     if(inputFile.files != null){   
       let file = inputFile?.files[0];
+      console.log(this.id);
+      console.log(file);
+
       this.store.dispatch(uploadProfileImage({ id: this.id, file }));  
     }
   }

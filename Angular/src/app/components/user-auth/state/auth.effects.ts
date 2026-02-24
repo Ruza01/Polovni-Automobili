@@ -8,7 +8,6 @@ import { Router } from "@angular/router";
 import { setErrorMessage, setLoadingSpinner } from "src/app/store/shared/shared.actions";
 import { AppState } from "src/app/store/app.state";
 
-
 @Injectable()
 export class AuthEffects{
     constructor(private actions$: Actions, private authService: UserAuthService, private store: Store<AppState>, private router:Router){

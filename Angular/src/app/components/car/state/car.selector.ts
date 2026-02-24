@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"
 import { CarState } from "./car.state"
 
-
 export const CAR_STATE_NAME = 'car';
 
 export const selectCarState = createFeatureSelector<CarState>(CAR_STATE_NAME);

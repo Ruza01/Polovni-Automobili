@@ -17,6 +17,8 @@
 .filterDiv{
     margin-left: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .infoDiv{
@@ -31,3 +33,7 @@
     flex-wrap: wrap;
 }
 
+.app-Filer {
+    display: flex;
+    flex-direction: column;
+}

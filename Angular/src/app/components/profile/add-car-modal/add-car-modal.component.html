@@ -8,9 +8,9 @@
     <button mat-button id="basicButton1" (click)="addCar()">Postavi oglas</button>
 </div>
 <div class="divZaSveSlike">
-    <div class="divZaSliku1" *ngIf="images[0]">
-    <img [src]="images[0]" alt="Odabrana slika">
-    <button class="close-button" (click)="removePhoto(0)">x</button>
+    <div class="divZaSliku1" *ngIf="images.length > 0">
+    <img [src]="images[currentIndex]" alt="Odabrana slika">
+    <button class="close-button" (click)="removePhoto(currentIndex)">x</button>
   </div>
   <div class="divZaOstale8Slike">
     <div class="divZaSliku2" *ngIf="images[1]">
@@ -47,121 +47,164 @@
     </div>
   </div>
 </div>
-<div class="container223">
-    <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Stanje</mat-label>
-          <input matInput type="text" formControlName="stanje"> 
-          <button *ngIf="carForm.get('stanje')?.value" matSuffix mat-icon-button aria-label="Stanje" (click)="carForm.get('stanje')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-    </form>
-    <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Marka</mat-label>
-          <input matInput type="text" formControlName="marka"> 
-          <button *ngIf="carForm.get('marka')?.value" matSuffix mat-icon-button aria-label="Marka" (click)="carForm.get('marka')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Model</mat-label>
-          <input matInput type="text" formControlName="model"> 
-          <button *ngIf="carForm.get('model')?.value" matSuffix mat-icon-button aria-label="Model" (click)="carForm.get('model')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Godiste</mat-label>
-          <input matInput type="text" formControlName="godiste"> 
-          <button *ngIf="carForm.get('godiste')?.value" matSuffix mat-icon-button aria-label="Godiste" (click)="carForm.get('godiste')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Kilometraza</mat-label>
-          <input matInput type="text" formControlName="kilometraza"> 
-          <button *ngIf="carForm.get('kilometraza')?.value" matSuffix mat-icon-button aria-label="Kilometraza" (click)="carForm.get('kilometraza')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Karoserija</mat-label>
-          <input matInput type="text" formControlName="karoserija"> 
-          <button *ngIf="carForm.get('karoserija')?.value" matSuffix mat-icon-button aria-label="Karoserija" (click)="carForm.get('karoserija')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Gorivo</mat-label>
-          <input matInput type="text" formControlName="gorivo"> 
-          <button *ngIf="carForm.get('gorivo')?.value" matSuffix mat-icon-button aria-label="Gorivo" (click)="carForm.get('gorivo')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Kubikaza</mat-label>
-          <input matInput type="text" formControlName="kubikaza"> 
-          <button *ngIf="carForm.get('kubikaza')?.value" matSuffix mat-icon-button aria-label="Kubikaza" (click)="carForm.get('kubikaza')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Snaga motora</mat-label>
-          <input matInput type="text" formControlName="snagaMotora">
-          <button *ngIf="carForm.get('snagaMotora')?.value" matSuffix mat-icon-button aria-label="Snaga motora" (click)="carForm.get('snagaMotora')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Cena</mat-label>
-          <input matInput type="text" formControlName="cena"> 
-          <button *ngIf="carForm.get('cena')?.value" matSuffix mat-icon-button aria-label="Cena" (click)="carForm.get('cena')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Fiksna cena</mat-label>
-          <input matInput type="text" formControlName="fiksnaCena">
-          <button *ngIf="carForm.get('fiksnaCena')?.value" matSuffix mat-icon-button aria-label="Fiksna cena" (click)="carForm.get('fiksnaCena')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-      <form [formGroup]="carForm">
-        <mat-form-field class="example-form-field">
-          <mat-label>Zamena</mat-label>
-          <input matInput type="text" formControlName="zamena"> 
-          <button *ngIf="carForm.get('zamena')?.value" matSuffix mat-icon-button aria-label="Zamena" (click)="carForm.get('zamena')?.setValue('')">
-            <mat-icon style="color: black;">close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-
-</div>
-
-
-
-
-
-
-    
+  <form [formGroup]="carForm">
+    <div class="addCarInfo">
+      <mat-form-field>
+      <mat-label>Stanje auta</mat-label>
+      <mat-select formControlName="stanje">
+        <mat-option value="Polovno">Polovno</mat-option>
+        <mat-option value="Novo">Novo</mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+      <mat-label>Marka auta</mat-label>
+      <mat-select formControlName="marka">
+        <mat-option value="Volkswagen">Volkswagen</mat-option>
+        <mat-option value="Ford">Ford</mat-option>
+        <mat-option value="Honda">Honda</mat-option>
+        <mat-option value="Nissan">Nissan</mat-option>
+        <mat-option value="Hyundai">Hyundai</mat-option>
+        <mat-option value="Chevrolet">Chevrolet</mat-option>
+        <mat-option value="Mercedes-Benz">Mercedes-Benz</mat-option>
+        <mat-option value="BMW">BMW</mat-option>
+        <mat-option value="Audi">Audi</mat-option>
+        <mat-option value="Kia">Kia</mat-option>
+        <mat-option value="Renault">Renault</mat-option>
+        <mat-option value="Peugeot">Peugeot</mat-option>
+        <mat-option value="Skoda">Škoda</mat-option>
+        <mat-option value="Seat">SEAT</mat-option>
+        <mat-option value="Fiat">Fiat</mat-option>
+        <mat-option value="Volvo">Volvo</mat-option>
+        <mat-option value="Mazda">Mazda</mat-option>
+        <mat-option value="Subaru">Subaru</mat-option>
+        <mat-option value="Suzuki">Suzuki</mat-option>
+        <mat-option value="Mitsubishi">Mitsubishi</mat-option>
+        <mat-option value="Tesla">Tesla</mat-option>
+        <mat-option value="Porsche">Porsche</mat-option>
+        <mat-option value="Jaguar">Jaguar</mat-option>
+        <mat-option value="Land Rover">Land Rover</mat-option>
+        <mat-option value="Lexus">Lexus</mat-option>
+        <mat-option value="Infiniti">Infiniti</mat-option>
+        <mat-option value="Acura">Acura</mat-option>
+        <mat-option value="Alfa Romeo">Alfa Romeo</mat-option>
+        <mat-option value="Abarth">Abarth</mat-option>
+        <mat-option value="Mini">MINI</mat-option>
+        <mat-option value="Citroen">Citroën</mat-option>
+        <mat-option value="Dacia">Dacia</mat-option>
+        <mat-option value="Jeep">Jeep</mat-option>
+        <mat-option value="GMC">GMC</mat-option>
+        <mat-option value="Cadillac">Cadillac</mat-option>
+        <mat-option value="Buick">Buick</mat-option>
+        <mat-option value="Chrysler">Chrysler</mat-option>
+        <mat-option value="Dodge">Dodge</mat-option>
+        <mat-option value="Ram">RAM</mat-option>
+        <mat-option value="Bentley">Bentley</mat-option>
+        <mat-option value="Lamborghini">Lamborghini</mat-option>
+        <mat-option value="Ferrari">Ferrari</mat-option>
+        <mat-option value="Maserati">Maserati</mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Model auta</mat-label>
+        <mat-select formControlName="model">
+          <mat-option value="A4">A4</mat-option>
+          <mat-option value="A6">A6</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Godiste auta</mat-label>
+        <mat-select formControlName="godiste">
+          <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kilometraza auta (km/h)</mat-label>
+          <input matInput placeholder="Kilometraza" value="100.000" formControlName="kilometraza">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Karoserija auta</mat-label>
+        <mat-select formControlName="karoserija">
+          <mat-option value="limuzina">Limuzina</mat-option>
+          <mat-option value="karavan">Karavan</mat-option>
+          <mat-option value="hecbek">Hecbek</mat-option>
+          <mat-option value="kupe">Kupe</mat-option>
+          <mat-option value="cabriolet">Kabriolet</mat-option>
+          <mat-option value="Dzip">Dzip</mat-option>
+          <mat-option value="minivan">Minivan / MPV</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Gorivo</mat-label>
+        <mat-select formControlName="gorivo">
+          <mat-option value="Dizel">Dizel</mat-option>
+          <mat-option value="Benzin">Benzin</mat-option>
+          <mat-option value="Hibrid">Hibrid</mat-option>
+          <mat-option value="Električni">Električni</mat-option>
+          <mat-option value="Plin">Plin (LPG/CNG)</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kubikaza auta (cm³)</mat-label>
+        <mat-select formControlName="kubikaza">
+          <mat-option value="1000">1000</mat-option>
+          <mat-option value="1200">1200</mat-option>
+          <mat-option value="1400">1400</mat-option>
+          <mat-option value="1600">1600</mat-option>
+          <mat-option value="1800">1800</mat-option>
+          <mat-option value="2000">2000</mat-option>
+          <mat-option value="2200">2200</mat-option>
+          <mat-option value="2400">2400</mat-option>
+          <mat-option value="2500">2500</mat-option>
+          <mat-option value="3000">3000</mat-option>
+          <mat-option value="3200">3200</mat-option>
+          <mat-option value="3500">3500</mat-option>
+          <mat-option value="4000">4000</mat-option>
+          <mat-option value="4500">4500</mat-option>
+          <mat-option value="5000">5000</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Snaga motora (kw/h)</mat-label>
+        <mat-select formControlName="snagaMotora">
+          <mat-option value="55">55</mat-option>
+          <mat-option value="60">60</mat-option>
+          <mat-option value="66">66</mat-option>
+          <mat-option value="70">70</mat-option>
+          <mat-option value="75">75</mat-option>
+          <mat-option value="80">80</mat-option>
+          <mat-option value="85">85</mat-option>
+          <mat-option value="90">90</mat-option>
+          <mat-option value="96">96</mat-option>
+          <mat-option value="100">100</mat-option>
+          <mat-option value="110">110</mat-option>
+          <mat-option value="120">120</mat-option>
+          <mat-option value="125">125</mat-option>
+          <mat-option value="135">135</mat-option>
+          <mat-option value="150">150</mat-option>
+          <mat-option value="160">160</mat-option>
+          <mat-option value="180">180</mat-option>
+          <mat-option value="200">200</mat-option>
+          <mat-option value="220">220</mat-option>
+          <mat-option value="250">250</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cena auta (€)</mat-label>
+          <input matInput placeholder="Cena" value="10000" formControlName="cena">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Fiksna cena</mat-label>
+        <mat-select formControlName="fiksnaCena">
+          <mat-option value="Da">Da</mat-option>
+          <mat-option value="Ne">Ne</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Zamena</mat-label>
+        <mat-select formControlName="zamena">
+          <mat-option value="Da">Da</mat-option>
+          <mat-option value="Ne">Ne</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+</form>

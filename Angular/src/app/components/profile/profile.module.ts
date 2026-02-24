@@ -25,6 +25,8 @@ import { StoreModule } from "@ngrx/store";
 import { PROFILE_STATE_NAME } from "./state/profile.selector";
 import { ProfileReducer } from "./state/profile.reducer";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatOption } from "@angular/material/core";
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -37,27 +39,28 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       VideoComponent,
     ],
     imports: [
-      CommonModule,
-      FontAwesomeModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatMenuModule,
-      MatTabsModule,
-      MatButtonToggleModule,
-      FontAwesomeModule,
-      MatCardModule,
-      MatFormFieldModule,
-      MatInputModule,
-      NgIf,
-      MatButtonModule,
-      BrowserAnimationsModule,
-      MatSnackBarModule,
-      EffectsModule.forFeature([ProfileEffects]),
-      StoreModule.forFeature(PROFILE_STATE_NAME, ProfileReducer)
-      
-    ]
+    CommonModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    FontAwesomeModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgIf,
+    MatSelectModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    EffectsModule.forFeature([ProfileEffects]),
+    StoreModule.forFeature(PROFILE_STATE_NAME, ProfileReducer),
+    MatOption
+]
 })
 
 export class ProfileModule { }

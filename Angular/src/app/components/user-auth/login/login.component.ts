@@ -7,7 +7,7 @@ import {Store} from '@ngrx/store'
 import { loginStart } from '../state/auth.actions';
 import { AppState } from 'src/app/store/app.state';
 import { setLoadingSpinner } from 'src/app/store/shared/shared.actions';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({

@@ -8,7 +8,6 @@ import { AddCarDto } from 'src/app/Dto/add-car.dto';
 import { getUserId } from '../../user-auth/state/auth.selector';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
     selector: 'app-add-car-modal',
@@ -18,22 +17,10 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AddCarModalComponent implements OnInit{
 
-  @Output() formClosed = new EventEmitter(); 
-
-  value1 = 'Stanje';
-  value2 = 'Marka';
-  value3 = 'Model';
-  value4 = 'Godiste';
-  value5 = 'Kilometraza';
-  value6 = 'Karoserija';
-  value7 = 'Gorivo';
-  value8 = 'Kubikaza';
-  value9 = 'Snaga motora';
-  value10 = 'Cena';
-  value11 = 'Fiksna cena';
-  value12 = 'Zamena';
-
+  @Output() formClosed = new EventEmitter();
+  years: number[] = []; 
   images: string[] = []; 
+  currentIndex: number = 0;
   selectedImage: string | ArrayBuffer | null = null; 
 
   carForm : FormGroup = new FormGroup({
@@ -57,16 +44,18 @@ export class AddCarModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
-   
+    for (let y = 1950; y <= 2026; y++)
+      this.years.push(y);
   }
 
-
   stepBack(){
-
+    if (this.images.length === 0) return;
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
 
   stepForward(){
-      
+    if (this.images.length === 0) return;
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
   }
 
   addPhotos(event: any) {
@@ -92,6 +81,8 @@ export class AddCarModalComponent implements OnInit{
     if (this.carForm.valid ) {
       const carDto: AddCarDto = this.carForm.value;
       carDto.images = this.images;
+
+      console.log(carDto);
 
       this.store.select(getUserId).subscribe(userID => {
         carDto.userId = userID;

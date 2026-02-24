@@ -5,12 +5,10 @@ import { getProfileImagee, getProfileImageSucces, updateUser, updateUserSuccess,
 import { exhaustMap, map, mergeMap, tap } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
 
-
 @Injectable()
 export class ProfileEffects {
 
     constructor(private actions$: Actions,private profileService: ProfileService, private sanitizer: DomSanitizer){
-        
     }
 
     profileImage$ = createEffect(() => {
@@ -46,9 +44,6 @@ export class ProfileEffects {
             ofType(updateUser),
             exhaustMap(action => this.profileService.updateUser(action.userId, action.field, action.value)
             .pipe(
-                // tap( updateUser => {
-                //     console.log("Updated user recived from the server", updateUser);
-                // }),
                 map(updatedUser => updateUserSuccess({updatedUser}))
             ))
         )

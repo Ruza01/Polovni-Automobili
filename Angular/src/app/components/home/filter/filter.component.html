@@ -1,6 +1,67 @@
-<div class="container">
-    <p-panelmenu [model]="items" />
-</div>
-<div class="card">
-    <p-button label="Reset Filters" (click)="resetFilters()"  class="custom-reset-button" />
-</div>
+<h4>Search</h4>
+<mat-form-field>
+  <mat-label>Brand</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'marka')">
+      <mat-option>None</mat-option>
+    @for (brand of brands; track brand) {
+      <mat-option [value]="brand.value">{{brand.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Year</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'godiste')">
+      <mat-option>None</mat-option>
+    @for (year of years; track year) {
+      <mat-option [value]="year.value">{{year.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Fuel</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'gorivo')">
+      <mat-option>None</mat-option>
+    @for (fuel of fuelTypes; track fuel) {
+      <mat-option [value]="fuel.value">{{fuel.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Body types</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'karoserija')">
+      <mat-option>None</mat-option>
+    @for (bodyType of bodyTypes; track bodyType) {
+      <mat-option [value]="bodyType.value">{{bodyType.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Engine power</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'snagaMotora')">
+      <mat-option>None</mat-option>
+    @for (enginePower of enginePowers; track enginePower) {
+      <mat-option [value]="enginePower.value">{{enginePower.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Engine size</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'kubikaza')">
+      <mat-option>None</mat-option>
+    @for (engineSize of engineSizes; track engineSize) {
+      <mat-option [value]="engineSize.value">{{engineSize.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Condition</mat-label>
+  <mat-select (selectionChange)="onSelectFilter($event.value, 'stanje')">
+      <mat-option>None</mat-option>
+    @for (condition of conditions; track condition) {
+      <mat-option [value]="condition.value">{{condition.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+
+

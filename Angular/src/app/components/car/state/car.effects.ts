@@ -1,19 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { addCar, addCarImages, addCarSucces, deleteCar, deleteCarSucces, getCars , getCarsByFilter, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
+import { addCar, addCarSucces, deleteCar, deleteCarSucces, getCars , getCarsByFilter, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
 import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
 import { Store } from "@ngrx/store";
-import { DomSanitizer } from "@angular/platform-browser";
 import { CarService } from "../car.service";
 import { Car } from "src/app/Models/car.model";
 import { AppState } from "src/app/store/app.state";
 
-
 @Injectable()
 export class CarEffects {
 
-    constructor(private actions$: Actions, private store: Store<AppState>, private carService: CarService, private sanitizer: DomSanitizer){
-        
+    constructor(private actions$: Actions, private store: Store<AppState>, private carService: CarService){
     }
 
     addCar$ = createEffect(() => {
@@ -55,7 +52,7 @@ export class CarEffects {
         )
       );
       
-      getCars1$ = createEffect(() =>
+      getCarsByFilter$ = createEffect(() =>
         this.actions$.pipe(
           ofType(getCarsByFilter),
           mergeMap( action => this.carService.getCarsByFilter(action.value, action.filterType).pipe(   
@@ -76,9 +73,4 @@ export class CarEffects {
           )
         )
       )
-
-
-
-
-    
 }

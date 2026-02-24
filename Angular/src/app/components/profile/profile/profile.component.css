@@ -12,9 +12,7 @@
     height: 600px;
     margin-left: 30px;
     margin-top: 20px;
-    border: 5px solid #1f1f1f;
-    border-radius: 40px;
-    background-color: rgba(31, 31, 31, 0.8);
+    border: 3px solid yellow;
 }
 
 .divAddCarImage{
@@ -29,6 +27,7 @@
     align-items: center;
     background-color: rgba(255, 165, 0, 0.6);
     margin-left: 70px;
+    border: 2px solid yellow;
 }
 
 .divInfo{
@@ -39,11 +38,13 @@
     margin-left: 90px;
     margin-top: 20px;
     background-color: rgba(255, 165, 0, 0.6);
+    border: 2px solid yellow;
 }
 
 .divInfoVideo{
     width: 300px;
     height: 315px;
+    border: 2px solid yellow;
 }
 
 #basicButton3{

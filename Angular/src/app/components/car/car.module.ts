@@ -10,7 +10,6 @@ import { StoreModule } from "@ngrx/store";
 import { CarReducer } from "./state/car.reducer";
 import { CAR_STATE_NAME } from "./state/car.selector";
 
-
 @NgModule({ declarations: [
         CarComponent,
     ], imports: [ReactiveFormsModule,

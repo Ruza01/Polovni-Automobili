@@ -1,5 +1,4 @@
 
-
 export interface Car{
     id: number;
     stanje: string;

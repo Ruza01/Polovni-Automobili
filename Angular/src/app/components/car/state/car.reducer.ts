@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CarState, initialState } from "./car.state";
-import { addCar, addCarImages, addCarSucces, deleteCarSucces, getCars, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
+import { addCarImages, addCarSucces, deleteCarSucces, getCars, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
 
 
 const _carReducer = createReducer(initialState,
@@ -26,8 +26,6 @@ const _carReducer = createReducer(initialState,
         ...state,
         cars: state.cars.filter(car => car.id !== carId)
       }))
-
-    
 )
 
 export function CarReducer(state: CarState | undefined, action: any){

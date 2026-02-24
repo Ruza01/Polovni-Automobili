@@ -3,9 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { loginSuccess } from '../user-auth/state/auth.actions';
-import { isAuthenticated } from '../user-auth/state/auth.selector';
+import { getUser, isAuthenticated } from '../user-auth/state/auth.selector';
 import { Router } from '@angular/router';
-
+import { User } from 'src/app/Models/user.model';
+import { SafeUrl } from '@angular/platform-browser';
+import { getProfileImage } from '../profile/state/profile.selector';
 
 @Component({
     selector: 'app-header',
@@ -15,19 +17,36 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     
-  isAuthenticated!: Observable<boolean>;
+  isAuthenticated$!: Observable<boolean>;
   clickedButton: number = 0;
+  imageUrl!: Observable<SafeUrl>;
+  user$!: Observable<User | null >;
+  previewImage: string | ArrayBuffer | null = null;
 
   constructor(private store: Store<AppState>, private router: Router){
   }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.store.select(isAuthenticated);
+    if (this.router.url == '/profile'){
+      this.clickedButton = 2;
+    }else{
+      this.clickedButton = 1;
+    }
+
+    this.isAuthenticated$ = this.store.select(isAuthenticated);
+    this.imageUrl = this.store.select(getProfileImage);  
+    this.user$ = this.store.select(getUser);
   }
   
   logOut(){
-    this.store.dispatch(loginSuccess({ user: null}));
-    this.router.navigate(['/login']);
+    const confirmed = window.confirm("Da li ste sigurni da zelite da se izlogujete?");
+
+    if (confirmed)
+    {
+      this.store.dispatch(loginSuccess({ user: null}));
+      this.router.navigate(['/login']);
+    }
+    
   }
 
   goToTwitter(){

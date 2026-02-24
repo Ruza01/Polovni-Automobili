@@ -5,7 +5,7 @@
 </head>
 
 <mat-toolbar class="matToolbar">
-    <div id="divZaSliku1" style="margin-left: 100px; margin-right: 280px;">
+    <div id="divZaSliku1" style="margin-left: 100px; margin-right: 20px;">
         <img src="assets/header/360_F_575158334_WqU7qcHExao3xoegDOkIv5utkIjzezN7-removebg-preview (1).png" alt="Moja slika1" height="100px" width="200px">
     </div>
     <div class="wrapper">
@@ -48,15 +48,27 @@
             <span>Linkedin</span>
         </div>
     </div>
+    <mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="mat-card-header-header">
+        <div mat-card-avatar class="example-header-image">
+    <img
+        [src]="(previewImage || (imageUrl | async)) || '../../../../assets/profile/No-profile-picture.webp'"
+        class="avatar-img"
+        alt="Avatar">
+    </div>
+        <mat-card-title>{{ (user$ | async)?.username }}</mat-card-title>
+        <mat-card-subtitle>Rola</mat-card-subtitle>
+    </mat-card-header>
+    </mat-card>
     <button mat-fab extended id="homeButton" style="margin-left: 400px;" [routerLink]="['/home']" [class.clicked]="clickedButton === 1" (click)="clickedButton = 1">
-        <mat-icon>home</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         Home
     </button>
-    <button mat-fab id="profileButton" [routerLink]="['/profile']" [class.clicked]="clickedButton === 2" (click)="clickedButton = 2" >
-        <mat-icon>View Profile</mat-icon>
+    <button mat-fab id="profileButton" [routerLink]="['/profile']" [class.clicked]="clickedButton === 2" (click)="clickedButton = 2" > 
+        <mat-icon>Profile</mat-icon>
         Profile
     </button>
-    <button mat-fab id="logOut"  (click)="logOut()" [class.clicked]="clickedButton === 3" (click)="clickedButton = 3">
+    <button mat-fab id="logOut"  (click)="logOut()">
         <mat-icon>exit_to_app</mat-icon>
         Logout
     </button>

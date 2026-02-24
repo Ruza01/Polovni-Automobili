@@ -1,14 +1,31 @@
-<mat-card id="profileImageCard">
-    <mat-card-header id="matCardHeader">
-        <img [src]="imageUrl | async" id="profileImg">
-        <div class="divProfileDataIInput">
-            <div>
-                <input type="file" id="image-input" (change)="uploadImage($event)"> 
-            </div>
-            <div class="divProfileData">
-                P<br>r<br>o<br>f<br>i<br>l<br>e<br><br>D<br>a<br>t<br>a
-            </div>
-        </div>
-    </mat-card-header>
-</mat-card>
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+  <img
+    [src]="(previewImage || (imageUrl | async)) || '../../../../assets/profile/No-profile-picture.webp'"
+    class="avatar-img"
+    alt="Avatar">
+</div>
+    <mat-card-title>{{ (user$ | async)?.username }}</mat-card-title>
+    <mat-card-subtitle>{{ (user$ | async)?.surname }}</mat-card-subtitle>
+  </mat-card-header>
+ <img
+    mat-card-image
+    class="No-profile-picture"
+    [src]="(previewImage || (imageUrl | async)) || '../../../../assets/profile/No-profile-picture.webp'"
+    alt="Profile picture">
 
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      Upload picture
+    </button>
+
+    <input
+      type="file"
+      #fileInput
+      hidden
+      accept="image/*"
+      (change)="uploadImage($event)"
+    >
+  </mat-card-actions>
+</mat-card>

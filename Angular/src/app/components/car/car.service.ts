@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { AddCarDto } from "src/app/Dto/add-car.dto";
 import { Car } from "src/app/Models/car.model";
 
-
 const api = "http://localhost:3000";
 
 @Injectable({
@@ -13,7 +12,6 @@ const api = "http://localhost:3000";
 
 export class CarService {
     constructor(private httpClient: HttpClient){
-
     }
 
     addCar(carDto: AddCarDto){
@@ -42,6 +40,5 @@ export class CarService {
         .set('filterType', filterType);
         return this.httpClient.get<Car[]>(`${api}/car/getCarsByFilter`, {params});
     }
-      
     
 }

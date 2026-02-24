@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { last, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Car } from 'src/app/Models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
-import { MenuItem } from 'primeng/api';
-import { getCarsByFilter } from '../../car/state/car.action';
 import { Router } from '@angular/router';
+import { Filter } from '../../../models/Interfaces/filter-interface';
+import { BODY_TYPES, BRANDS, CONDITIONS, ENGINE_POWERS, ENGINE_SIZES, FUEL_TYPES } from 'src/app/models/car-filter/car-filter';
+import { getCarsByFilter } from '../../car/state/car.action';
 
 @Component({
     selector: 'app-filter',
@@ -17,8 +18,14 @@ export class FilterComponent implements OnInit{
 
   cars$: Observable<Car[]>;
   images$: Observable<string[]>;
-  items: MenuItem[] = [];
   allCars: Car[] = [];
+  years: Filter[] = [];
+  brands: Filter[] = BRANDS;
+  fuelTypes: Filter[] = FUEL_TYPES;
+  bodyTypes: Filter[] = BODY_TYPES;
+  enginePowers: Filter[] = ENGINE_POWERS;
+  engineSizes: Filter[] = ENGINE_SIZES;
+  conditions: Filter[] = CONDITIONS;
 
   constructor(private store: Store, private router: Router){
     this.cars$ = this.store.select(selectAllCars);
@@ -26,98 +33,20 @@ export class FilterComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.cars$.subscribe((cars) => {
-      this.allCars = cars;
-      this.fillTheMenue(cars);  
-    });
+    for (let y = 1950; y <= 2026; y++) {
+      this.years.push({
+        value: y.toString(),
+        viewValue: y.toString()
+      });
+    }
+  }
+
+  onSelectFilter(value: string, filterType: string) {
+    console.log(`Selected ${filterType}: ${value}`);
+    this.store.dispatch(getCarsByFilter({ value, filterType }));
   }
 
 
-  fillTheMenue(cars: Car[]){
-    const uniqueKaroserije = Array.from(new Set(cars.map(car => car.karoserija))); //Set eliminisanje duplikate 
-    const uniqueMarke = Array.from(new Set(cars.map(car => car.marka))); 
-    const uniqueGorivo = Array.from(new Set(cars.map(car => car.gorivo))); 
-    const uniqueGodiste = Array.from(new Set(cars.map(car => car.godiste)));
-    const uniqueKubikaza = Array.from(new Set(cars.map(car => car.kubikaza)));
-    const uniqueSnagaMotora = Array.from(new Set(cars.map(car => car.snagaMotora)));
-
-    this.items = [
-      {
-          label: 'Marka',
-          icon: 'pi pi-car',
-          items: uniqueMarke.map((marka) => ({
-            label: marka,
-            icon: 'pi pi-tag',
-            command: () => this.onMenuItemClick(marka.toString(), 'marka'),
-            
-          })),
-      },
-      {
-        label: 'Karoserija',
-        icon: 'pi pi-wrench',
-        items: uniqueKaroserije.map((karoserija) => ({
-          label: karoserija,
-          icon: 'pi pi-cog',
-          command: () => this.onMenuItemClick(karoserija.toString(), 'karoserija')
-        }))
-      },
-      {
-        label: 'Vrsta Goriva',
-        icon: 'pi pi-gauge',
-        items: uniqueGorivo.map((gorivo) => ({
-          label: gorivo,
-          icon: 'pi pi-sun',
-          command: () => this.onMenuItemClick(gorivo.toString(), 'gorivo')
-        }))
-      },
-      {
-        label: 'Godiste',
-        icon: 'pi pi-calendar',
-        items: uniqueGodiste.map((godiste) => ({
-          label: godiste.toString(),
-          icon: 'pi pi-calendar-times',
-          command: () => this.onMenuItemClick(godiste.toString(), 'godiste')
-        }))
-      },
-      {
-        label: 'Kubikaza',
-        icon: 'pi pi-cog', 
-        items: uniqueKubikaza.map((kubikaza) => ({
-          label: kubikaza.toString()  + ' cm³ ',
-          icon: 'pi pi-random',
-          command: () => this.onMenuItemClick(kubikaza.toString(), 'kubikaza')
-        }))
-      },
-      {
-        label: 'Snaga (KW)',
-        icon: 'pi pi-power-off',
-        items: uniqueSnagaMotora.map((sMotora) => ({
-          label: sMotora.toString(),
-          icon: 'pi pi-bolt',
-          command: () => this.onMenuItemClick(sMotora.toString(), 'snagaMotora')
-        }))
-      },
-    ]
-
-  }
-
-  onMenuItemClick( value: string, filterType: string){
-    this.store.dispatch(getCarsByFilter( {value, filterType} ));
-    
-      this.fillTheMenue(this.allCars);
-      
-    ;
-  }
-
-  resetFilters() {
-    this.store.dispatch(getCarsByFilter({ value: '', filterType: '' }));
-
-    this.cars$.subscribe((cars) => {
-      this.allCars = cars; 
-      this.fillTheMenue(cars); 
-    });
-  }
-  
 }
 
   

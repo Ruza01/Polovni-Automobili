@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/Models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
-import { getCars } from '../../car/state/car.action';
 
 @Component({
     selector: 'app-view-more',

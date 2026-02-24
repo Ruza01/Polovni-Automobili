@@ -1,5 +1,4 @@
 import { Component , OnInit} from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Models/user.model';
@@ -14,7 +13,6 @@ import { updateUser } from '../state/profile.action';
     standalone: false
 })
 
-
 export class ProfileDataComponent implements OnInit {
     
   value1 = 'Name';
@@ -22,7 +20,8 @@ export class ProfileDataComponent implements OnInit {
   value3 = 'Username';
   value4 = 'Email';
   user$!: Observable<User | null>;
-  originalUser: User | undefined;
+  tempSurname: string = '';
+  surnameChanged: boolean = false;
 
   constructor(private store: Store<AppState>){
   }
@@ -34,6 +33,16 @@ export class ProfileDataComponent implements OnInit {
   updateField(field: string, value: string, userId: number){
     this.store.dispatch(updateUser({ userId, field, value }))
   
+  }
+
+  onSurnameChange(newValue: string, originalValue: string) {
+    this.tempSurname = newValue;
+    this.surnameChanged = newValue !== originalValue;
+  }
+
+  confirmSurname(userId: number) {
+    this.updateField('surname', this.tempSurname, userId);
+    this.surnameChanged = false;
   }
 
 }

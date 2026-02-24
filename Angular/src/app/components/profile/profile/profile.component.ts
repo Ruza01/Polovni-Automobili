@@ -14,11 +14,9 @@ export class ProfileComponent implements OnInit {
   showContent: boolean = false;
 
   constructor(private carService: CarService, private store: Store<AppState>){
-
   }
 
   ngOnInit(): void {
-    
   }
   
   openForm() {
