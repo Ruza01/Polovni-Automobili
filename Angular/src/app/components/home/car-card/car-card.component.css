@@ -53,11 +53,11 @@
 }
 
 #basicButton{
-    margin-top: 150px;
     color: orange;
     background-color: green;
     border-radius: 10px;
     border-right: 20px;
+    margin-top: 10px;
 }
 
 #labelNaziv{
@@ -112,7 +112,16 @@
     color: red;
     background-color: transparent;
     position: absolute;
-    margin-top: 100px;
+    margin-top: 40px;
     margin-left: 45px;
     border: 3px slod black;
+}
+
+.favDiv {
+  border: none;           
+  border-radius: 50px;       
+  padding: 5px 10px;      
+  font-size: 14px;          
+  cursor: pointer;
+  margin-top: 90px;      
 }

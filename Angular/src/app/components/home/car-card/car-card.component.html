@@ -23,6 +23,9 @@
         <button *ngIf="isAdmin$! | async" mat-icon-button id="deleteButton" (click)="deleteCar(car)">
           <mat-icon>delete</mat-icon>
         </button>
+        <button (click)="addToFavorites(car.id)" class="favDiv">
+          ❤️ Add to favorites
+        </button>
         <button mat-button id="basicButton" (click)="toggleContent(car)">View More</button>
       </div>
       <div *ngIf="showAdditionalContent && selectedCar === car" class="blur-background" (click)="closeAdditionalContent()"></div>

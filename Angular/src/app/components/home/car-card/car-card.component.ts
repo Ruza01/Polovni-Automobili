@@ -6,6 +6,7 @@ import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 import { deleteCar, getCars } from '../../car/state/car.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { hasRole } from '../../user-auth/state/auth.selector';
+import { addFavorite } from '../../favorites/state/favorites.action';
 
 @Component({
     selector: 'app-car-card',
@@ -39,17 +40,6 @@ export class CarCardComponent implements OnInit{
   ngOnInit(): void {
     this.store.dispatch(getCars());
     this.isAdmin$ = this.store.select(hasRole('ADMIN'));
-
-    this.cars$.subscribe(cars => {
-      console.log("Automobili:",cars);
-      cars.forEach(car => {
-        console.log(`Slike za auto ${car.id}:`, car.images);
-      })
-    })
-
-    this.images$.subscribe(images => {
-      console.log("Slike", images);
-    })
   }
 
   onCloseViewMore(){
@@ -62,10 +52,13 @@ export class CarCardComponent implements OnInit{
     if (confirmed){
       this.store.dispatch(deleteCar( {carId: car.id} ));
 
-      this.snackBar.open('Uspešno ste obrisali oglas!', 'Zatvori', {
-      duration: 7000,
-    });
+        this.snackBar.open('Uspešno ste obrisali oglas!', 'Zatvori', {
+        duration: 7000,
+      });
     }
-    
+  }
+
+  addToFavorites(carId: number) {
+    this.store.dispatch(addFavorite({ carId }))
   }
 }

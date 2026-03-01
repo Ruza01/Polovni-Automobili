@@ -21,6 +21,7 @@ import { CarEffects } from './components/car/state/car.effects';
 import { ProfileEffects } from './components/profile/state/profile.effects';
 import { CarModule } from './components/car/car.module';
 import { AuthInterceptor } from './components/user-auth/interceptors/auth-interceptor';
+import { FavoritesModule } from './components/favorites/favorites.module';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -39,6 +40,7 @@ import { AuthInterceptor } from './components/user-auth/interceptors/auth-interc
         FormsModule,
         HomeModule,
         CarModule,
+        FavoritesModule,
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: !isDevMode(),

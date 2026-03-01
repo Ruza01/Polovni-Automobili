@@ -17,6 +17,6 @@ import { CAR_STATE_NAME } from "./state/car.selector";
         FormsModule,
         FontAwesomeModule,
         EffectsModule.forFeature([CarEffects]),
-        StoreModule.forFeature(CAR_STATE_NAME, CarReducer)], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        StoreModule.forFeature(CAR_STATE_NAME, CarReducer)], providers: [provideHttpClient(withInterceptorsFromDi())] }) 
 
 export class CarModule {}
