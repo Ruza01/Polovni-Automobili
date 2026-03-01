@@ -17,3 +17,13 @@ export const getUserId = createSelector(getAuthState, state => {
     }
     return -1;
 });
+
+export const getUserRole = createSelector(
+    getAuthState,
+    state => state.user ? state.user.role : null
+);
+
+export const hasRole = (role: string) => createSelector(
+    getAuthState,
+    state => state.user ? state.user.role  === role : false
+);

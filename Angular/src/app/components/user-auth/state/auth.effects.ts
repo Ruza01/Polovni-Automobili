@@ -14,29 +14,31 @@ export class AuthEffects{
     }
     
     login$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(loginStart),
-            exhaustMap((action) => {
-                return this.authService.login(action.email, action.password)
-                .pipe(
-                    exhaustMap(data => {
-                        return this.authService.getUserWithToken(data.access_token)
-                                    .pipe(
-                                        map(user => {
-                                            this.store.dispatch(setLoadingSpinner({ status:false }));
-                                            this.router.navigate(['home']);
-                                            return loginSuccess({user});
-                                        })
-                                    )
-                    }),
-                    catchError(error => {
-                        this.store.dispatch(setLoadingSpinner({ status:false }));
-                        return of(setErrorMessage({ errorMsg:error.error.message }));
-                    })
-                );
-            })
-        )
-    })
+    return this.actions$.pipe(
+        ofType(loginStart),
+        exhaustMap((action) => {
+            return this.authService.login(action.email, action.password).pipe(
+                tap(res => {
+                    // Čuvamo token u localStorage odmah posle login-a
+                    localStorage.setItem('token', res.access_token);
+                }),
+                exhaustMap(data => {
+                    return this.authService.getUserWithToken(data.access_token).pipe(
+                        map(user => {
+                            this.store.dispatch(setLoadingSpinner({ status:false }));
+                            this.router.navigate(['home']);
+                            return loginSuccess({ user });
+                        })
+                    );
+                }),
+                catchError(error => {
+                    this.store.dispatch(setLoadingSpinner({ status:false }));
+                    return of(setErrorMessage({ errorMsg:error.error.message }));
+                })
+            );
+        })
+    )
+});
 
     loginRedirect$ = createEffect(() => {
         return this.actions$.pipe(

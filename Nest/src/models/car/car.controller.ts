@@ -1,7 +1,12 @@
-import { Controller, Post, Get, UseInterceptors, UploadedFiles, Param, ParseIntPipe, Res, Patch, Body, Delete, Query } from '@nestjs/common';
+import { Controller, Post, Get, UseInterceptors, UploadedFiles, Param, ParseIntPipe, Res, Patch, Body, Delete, Query, UseGuards } from '@nestjs/common';
 import { CarService } from './car.service';
 import { carDto } from './DTOs/car.dto';
+import { Roles } from '../auth/decorators/role-decorator';
+import { Role } from '../auth/enums/role-enum';
+import { RolesGuard } from '../auth/guards/roles-guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard,RolesGuard)
 @Controller('car')
 export class CarController {
 
@@ -14,10 +19,12 @@ export class CarController {
     }
 
     @Post('addCar')
+    @Roles(Role.ADMIN, Role.MEMBER)
     async addCar(@Body() carDto: carDto){
         return this.carService.addCar(carDto);
     }
 
+    @Roles(Role.ADMIN)
     @Delete('deleteCar/:id')
     async deleteCar(@Param('id', ParseIntPipe) id: number ){
         return this.carService.deleteCar(id);

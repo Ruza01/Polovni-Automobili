@@ -11,7 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 @import "primeicons/primeicons.css";
 
 .bg{
-    background-color: orange;
+    background-color: darkgray;
     z-index: -2;
     min-height: 90vh;
 }

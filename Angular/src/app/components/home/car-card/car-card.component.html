@@ -20,7 +20,7 @@
         </div>
         </div>
       <div class="divDugmici">
-        <button mat-icon-button id="deleteButton" (click)="deleteCar(car)">
+        <button *ngIf="isAdmin$! | async" mat-icon-button id="deleteButton" (click)="deleteCar(car)">
           <mat-icon>delete</mat-icon>
         </button>
         <button mat-button id="basicButton" (click)="toggleContent(car)">View More</button>

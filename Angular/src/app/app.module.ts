@@ -1,7 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { provideHttpClient, withInterceptorsFromDi }  from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi }  from '@angular/common/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects';
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +20,7 @@ import { appReducer } from './store/app.state';
 import { CarEffects } from './components/car/state/car.effects';
 import { ProfileEffects } from './components/profile/state/profile.effects';
 import { CarModule } from './components/car/car.module';
+import { AuthInterceptor } from './components/user-auth/interceptors/auth-interceptor';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -46,6 +47,7 @@ import { CarModule } from './components/car/car.module';
             traceLimit: 75,
         }),
         EffectsModule.forRoot([CarEffects, ProfileEffects]),
-        StoreModule.forRoot(appReducer)], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        StoreModule.forRoot(appReducer)], providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+] })
 export class AppModule {
 }

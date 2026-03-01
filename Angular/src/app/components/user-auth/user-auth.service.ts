@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { User } from 'src/app/Models/user.model';
+import { User } from 'src/app/models/user.model';
 import { signupDto } from 'src/app/Dto/signup.dto';
-import { responseToken } from 'src/app/Models/response-token.model';
 import { Observable } from 'rxjs';
+import { responseToken } from 'src/app/models/response-token.model';
 
 const api = "http://localhost:3000/"
 
@@ -41,6 +41,8 @@ export class UserAuthService {
   getUser(): Observable<User> {
     return this.http.get<User>(`${api}/user`);
   }
+
+  
 
   
 }

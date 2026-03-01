@@ -65,3 +65,11 @@
   .custom-reset-button:hover {
     background-color: lightgreen; /* Svetlija zelena kada je kursor preko dugmeta */
 }
+
+.search {
+    margin-left: 60px;
+}
+
+.resetFiltersDiv{
+    margin-left: 30px;
+}

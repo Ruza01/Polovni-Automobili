@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/app.state';
 import { loginSuccess } from '../user-auth/state/auth.actions';
 import { getUser, isAuthenticated } from '../user-auth/state/auth.selector';
 import { Router } from '@angular/router';
-import { User } from 'src/app/Models/user.model';
+import { User } from 'src/app/models/user.model';
 import { SafeUrl } from '@angular/platform-browser';
 import { getProfileImage } from '../profile/state/profile.selector';
 

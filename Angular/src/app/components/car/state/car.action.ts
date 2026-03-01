@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { AddCarDto } from "src/app/Dto/add-car.dto";
-import { Car } from "src/app/Models/car.model";
+import { Car } from "src/app/models/car.model";
 
 export const addCar = createAction('Add Car', props<{ carDto: AddCarDto }>() );
 export const addCarSucces = createAction('Add Car Succes', props<{ car: Car }>() );

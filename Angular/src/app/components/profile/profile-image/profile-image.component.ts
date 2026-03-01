@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/Models/user.model';
+import { User } from 'src/app/models/user.model';
 import { ProfileService } from '../profile.service';
 import { Store } from '@ngrx/store';
 import { getUser, getUserId } from '../../user-auth/state/auth.selector';

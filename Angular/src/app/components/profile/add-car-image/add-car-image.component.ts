@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Car } from 'src/app/Models/car.model';
+import { Car } from 'src/app/models/car.model';
 import { ProfileService } from '../profile.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';

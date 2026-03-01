@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AddCarDto } from "src/app/Dto/add-car.dto";
-import { Car } from "src/app/Models/car.model";
+import { Car } from "src/app/models/car.model";
 
 const api = "http://localhost:3000";
 

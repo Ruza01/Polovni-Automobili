@@ -1,4 +1,4 @@
-<h4>Search</h4>
+<h4 class="search">Search</h4>
 <mat-form-field>
   <mat-label>Brand</mat-label>
   <mat-select (selectionChange)="onSelectFilter($event.value, 'marka')">
@@ -62,6 +62,10 @@
     }
   </mat-select>
 </mat-form-field>
-
+<div class="resetFiltersDiv">
+  <button mat-raised-button color="warn" (click)="resetFilters()">
+    Reset Filters
+  </button>
+</div>
 
 

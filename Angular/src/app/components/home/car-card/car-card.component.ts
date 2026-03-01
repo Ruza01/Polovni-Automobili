@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Car } from 'src/app/Models/car.model';
+import { Car } from 'src/app/models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 import { deleteCar, getCars } from '../../car/state/car.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { hasRole } from '../../user-auth/state/auth.selector';
 
 @Component({
     selector: 'app-car-card',
@@ -18,6 +19,7 @@ export class CarCardComponent implements OnInit{
   selectedCar: Car | null = null;
   cars$: Observable<Car[]>;
   images$: Observable<string[]>;
+  isAdmin$!: Observable<boolean>;
 
   constructor(private store: Store, private snackBar: MatSnackBar){
     this.cars$ = this.store.select(selectAllCars);
@@ -36,6 +38,7 @@ export class CarCardComponent implements OnInit{
 
   ngOnInit(): void {
     this.store.dispatch(getCars());
+    this.isAdmin$ = this.store.select(hasRole('ADMIN'));
 
     this.cars$.subscribe(cars => {
       console.log("Automobili:",cars);
@@ -54,10 +57,15 @@ export class CarCardComponent implements OnInit{
   }
 
   deleteCar(car: Car){
-    this.store.dispatch(deleteCar( {carId: car.id} ));
+    const confirmed = window.confirm("Da li ste sigurni da zelite da se izlogujete?");
 
-    this.snackBar.open('Uspešno ste obrisali oglas!', 'Zatvori', {
+    if (confirmed){
+      this.store.dispatch(deleteCar( {carId: car.id} ));
+
+      this.snackBar.open('Uspešno ste obrisali oglas!', 'Zatvori', {
       duration: 7000,
     });
+    }
+    
   }
 }

@@ -1,3 +1,4 @@
+import { Role } from 'src/models/auth/enums/role-enum';
 import { Car } from 'src/models/car/entities/car.entity';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
@@ -26,12 +27,16 @@ export class User extends BaseEntity {
     @CreateDateColumn()
     createdAt: Date;
 
+    @Column({
+        type: 'enum',
+        enum: Role,
+        default: Role.MEMBER
+    })
+    role: Role
+
     @Column({ nullable:true })
     profileImagePath: string;
 
     @OneToMany(type => Car, car => car.user)
     userCars: Car[];
-    
-
-
 }

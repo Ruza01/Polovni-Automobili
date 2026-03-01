@@ -9,16 +9,13 @@
         <div class="divInfo">
             <app-infoo></app-infoo>
             <div class="divDodajSbojOglas">
-                <button mat-button id="basicButton3" (click)="openForm()">Dodaj svoj oglas !</button>
+                <button *ngIf="isNotVisitor(user$ | async)" mat-button id="basicButton3" (click)="openForm()">Dodaj svoj oglas !</button>
             </div>
-        </div>
-        <div class="videoDiv">
-            <app-video></app-video>
         </div>
     </div>
     <div *ngIf="showContent" class="divAddCarImage">
         <app-add-car-image></app-add-car-image>
-        <div class="divAddCarModal">
+        <div>
             <app-add-car-modal *ngIf="showContent" (formClosed)="onFormClosed()"></app-add-car-modal>
         </div>
     </div>

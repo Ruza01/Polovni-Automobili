@@ -20,7 +20,7 @@ export class UserController {
     @Post('/register')
     async doUserRegistration( @Body(SETTINGS.VALIDATION_PIPE) userRegister: UserRegisterRequestDto ): Promise<User> {
         return await this.userService.doUserRegistration(userRegister);
-    }m
+    };
 
     @Post('uploadImage/:id')
     @UseInterceptors(FileInterceptor('file', { 

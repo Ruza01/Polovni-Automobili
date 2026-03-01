@@ -2,8 +2,8 @@
 
 .container111{
     display: flex;
-    background-image: url('../../../../assets/background/pngtree-hd-brick-wall-background-picture-image_206286.jpg');
     background-size: cover; 
+    background-color: darkgray;
     background-attachment: fixed; 
     min-height: 100vh; 
     width: 100%;
@@ -16,7 +16,6 @@
 
 .filterDiv{
     margin-left: 20px;
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }

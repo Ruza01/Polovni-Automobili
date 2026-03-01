@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Car } from 'src/app/Models/car.model';
+import { Car } from 'src/app/models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 import { Router } from '@angular/router';
 import { Filter } from '../../../models/Interfaces/filter-interface';
 import { BODY_TYPES, BRANDS, CONDITIONS, ENGINE_POWERS, ENGINE_SIZES, FUEL_TYPES } from 'src/app/models/car-filter/car-filter';
-import { getCarsByFilter } from '../../car/state/car.action';
+import { getCars, getCarsByFilter } from '../../car/state/car.action';
 
 @Component({
     selector: 'app-filter',
@@ -46,7 +46,9 @@ export class FilterComponent implements OnInit{
     this.store.dispatch(getCarsByFilter({ value, filterType }));
   }
 
-
+  resetFilters(){
+    this.store.dispatch(getCars())
+  }
 }
 
   

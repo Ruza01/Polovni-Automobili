@@ -57,7 +57,7 @@
         alt="Avatar">
     </div>
         <mat-card-title>{{ (user$ | async)?.username }}</mat-card-title>
-        <mat-card-subtitle>Rola</mat-card-subtitle>
+        <mat-card-subtitle>{{ (user$ | async)?.role }}</mat-card-subtitle>
     </mat-card-header>
     </mat-card>
     <button mat-fab extended id="homeButton" style="margin-left: 400px;" [routerLink]="['/home']" [class.clicked]="clickedButton === 1" (click)="clickedButton = 1">

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AddCarDto } from "src/app/Dto/add-car.dto";
-import { User } from "src/app/Models/user.model";
+import { User } from "src/app/models/user.model";
 
 const api = "http://localhost:3000";
 

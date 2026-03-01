@@ -1,7 +1,7 @@
 .container1233{
     display: flex;
-    background-image: url('../../../../assets/background/pngtree-hd-brick-wall-background-picture-image_206286.jpg');
-    background-size: cover; 
+    background-size: cover;
+    background-color: darkgray; 
     background-attachment: fixed; 
     min-height: 100vh; 
     width: 100%;
@@ -12,7 +12,6 @@
     height: 600px;
     margin-left: 30px;
     margin-top: 20px;
-    border: 3px solid yellow;
 }
 
 .divAddCarImage{
@@ -20,31 +19,27 @@
     height: 600px;
     margin-left: 30px;
     margin-top: 20px;
-    border: 5px solid #1f1f1f;
+    border: 3px solid #1f1f1f;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgba(255, 165, 0, 0.6);
     margin-left: 70px;
-    border: 2px solid yellow;
 }
 
 .divInfo{
-    border: 5px solid #1f1f1f;
+    border: 3px solid #1f1f1f;
     height: 200px;
     width: 200px;
     border-radius: 40px;
-    margin-left: 90px;
     margin-top: 20px;
     background-color: rgba(255, 165, 0, 0.6);
-    border: 2px solid yellow;
 }
 
 .divInfoVideo{
     width: 300px;
     height: 315px;
-    border: 2px solid yellow;
 }
 
 #basicButton3{

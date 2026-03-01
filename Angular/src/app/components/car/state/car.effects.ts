@@ -4,7 +4,7 @@ import { addCar, addCarSucces, deleteCar, deleteCarSucces, getCars , getCarsByFi
 import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
 import { Store } from "@ngrx/store";
 import { CarService } from "../car.service";
-import { Car } from "src/app/Models/car.model";
+import { Car } from "src/app/models/car.model";
 import { AppState } from "src/app/store/app.state";
 
 @Injectable()

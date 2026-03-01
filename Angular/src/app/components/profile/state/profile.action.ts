@@ -1,6 +1,6 @@
 import { SafeUrl } from "@angular/platform-browser";
 import { createAction, props } from "@ngrx/store";
-import { User } from "src/app/Models/user.model";
+import { User } from "src/app/models/user.model";
 
 export const getProfileImagee = createAction('[profile page] get profile image start', props<{ id: number | undefined }>() );
 export const getProfileImageSucces = createAction('[profile page] get profile image succes', props<{ url: SafeUrl }>() );

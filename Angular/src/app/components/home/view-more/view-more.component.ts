@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Car } from 'src/app/Models/car.model';
+import { Car } from 'src/app/models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 
 @Component({

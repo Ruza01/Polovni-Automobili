@@ -18,7 +18,6 @@ import { AddCarImageComponent } from "./add-car-image/add-car-image.component";
 import { AddCarModalComponent } from './add-car-modal/add-car-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfooComponent } from './infoo/infoo.component';
-import { VideoComponent } from './video/video.component';
 import { EffectsModule } from "@ngrx/effects";
 import { ProfileEffects } from "./state/profile.effects";
 import { StoreModule } from "@ngrx/store";
@@ -36,7 +35,6 @@ import { MatSelectModule } from '@angular/material/select';
       AddCarImageComponent,
       AddCarModalComponent,
       InfooComponent,
-      VideoComponent,
     ],
     imports: [
     CommonModule,
