@@ -9,6 +9,6 @@ import { Car } from '../car/entities/car.entity';
   imports: [TypeOrmModule.forFeature([Favorite, Car])],
   controllers: [FavoritesController],
   providers: [FavoritesService],
-  exports: [FavoritesService]
+  exports: [FavoritesService] 
 })
 export class FavoritesModule {}

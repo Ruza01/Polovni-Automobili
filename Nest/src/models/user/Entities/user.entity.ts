@@ -1,6 +1,7 @@
 import { Role } from 'src/models/auth/enums/role-enum';
 import { Car } from 'src/models/car/entities/car.entity';
 import { Favorite } from 'src/models/favorites/entities/favorite.entity';
+import { Review } from 'src/models/reviews/entities/review.entity';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 
@@ -43,4 +44,10 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Favorite, favorite => favorite.user)
     favorites: Favorite[];
+
+    @OneToMany(() => Review, review => review.reviewer)
+    reviewsGiven: Review[];
+
+    @OneToMany(() => Review, review => review.reviewedUser)
+    reviewsReceived: Review[];
 }

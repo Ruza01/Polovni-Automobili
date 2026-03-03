@@ -22,6 +22,7 @@ import { ProfileEffects } from './components/profile/state/profile.effects';
 import { CarModule } from './components/car/car.module';
 import { AuthInterceptor } from './components/user-auth/interceptors/auth-interceptor';
 import { FavoritesModule } from './components/favorites/favorites.module';
+import { ReviewsModule } from './components/reviews/reviews.module';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -41,6 +42,7 @@ import { FavoritesModule } from './components/favorites/favorites.module';
         HomeModule,
         CarModule,
         FavoritesModule,
+        ReviewsModule,
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: !isDevMode(),

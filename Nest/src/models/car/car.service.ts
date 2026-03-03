@@ -22,6 +22,7 @@ export class CarService {
     async getAllCars(){
         return Car.find({ relations: ['user', 'images'], select: {
             user:{
+                id: true,
                 username: true
             },
             images: {

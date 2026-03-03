@@ -11,7 +11,7 @@ import { FavoritesEffects } from './state/favorites.effects';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('favorites', favoritesReducer),
+    StoreModule.forFeature('favorites', favoritesReducer), 
     EffectsModule.forFeature([FavoritesEffects])
   ]
 })

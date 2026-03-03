@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { first, firstValueFrom, Observable } from 'rxjs';
 import { Car } from 'src/app/models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
+import { createReview, loadReviews } from '../../reviews/state/reviews.action';
+import { getUserId } from '../../user-auth/state/auth.selector';
 
 @Component({
     selector: 'app-view-more',
@@ -13,16 +15,20 @@ import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 export class ViewMoreComponent implements OnInit {
   
   cars$: Observable<Car[]>;
-  kW: number = 200; //RSD
-
+  users$: Observable<number>;
   @Input() car: Car | undefined;
   @Output() closeViewMore: EventEmitter<void> = new EventEmitter<void>(); 
   currentImageIndex: number = 0;
   registration: number = 0;
   kasko: number = 0;
+  kW: number = 200; //RSD
+  reviewRating!: number;     // ocena 1-5
+  reviewComment: string = ''; // komentar
+  
 
   constructor(private store: Store){
     this.cars$ = this.store.select(selectAllCars);
+    this.users$ = this.store.select(getUserId);
   }
   
   stepBack1(){
@@ -110,4 +116,23 @@ export class ViewMoreComponent implements OnInit {
     }
     return osiguranje;
   }
+
+  async submitReview() {
+    if (!this.car) {
+      console.error('Car nije definisan!');
+    return;
+    }
+
+    if (this.reviewRating) {
+      this.store.dispatch(createReview({
+        reviewedUserId: this.car?.user.id,
+        rating: this.reviewRating,
+        comment: this.reviewComment
+      }));
+
+      this.reviewRating = 0;
+      this.reviewComment = '';
+    }
+  }
 }
+

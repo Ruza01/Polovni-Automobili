@@ -1,7 +1,7 @@
 #slika1{
     height: 400px;
     width: 600px;
-    border: 5px solid black;
+    border: 2px solid black;
 }
 
 .nazivDiv{
@@ -12,7 +12,7 @@
 .divPodaci{
     height: 400px;
     width: 400px;
-    border: 5px solid black;
+    border: 2px solid black;
     margin-left: 20px;
     font-size: 20px;
     border-radius: 40px;
@@ -26,7 +26,7 @@
 
 .divRegistracijaKasko{
     height: 100px;
-    width: 700px;
+    width: 600px;
     border: 1px solid black;
     margin-top: 22px;
     font-size: 20px;
@@ -34,7 +34,7 @@
     font-weight: 900;
     padding-left: 20px;
     padding-top: 20px;
-    border: 5px solid black;
+    border: 2px solid black;
 }
 
 .arrow-button {
@@ -108,4 +108,112 @@
     position: absolute;
     top: 10px;
     right: 10px;
-  }
+}
+
+.divRecenzijeiKasko {
+    display: flex;
+    width: 110%;
+}
+
+.divRecenzije {
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.divRecenzije{
+    margin-left: 10px;
+    width: 350px;
+}
+  
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-label {
+  font-weight: 600;
+}
+
+.modern-select-small {
+  padding: 4px 8px;
+  font-size: 14px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modern-select-small:hover {
+  border-color: #007bff;
+}
+
+.modern-select-small:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.15);
+}
+
+.button-wrapper {
+  margin-left: 5px;
+}
+
+.modern-btn {
+  padding: 5px 12px;
+  font-size: 14px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modern-btn:hover:not(:disabled) {
+  background-color: #0069d9;
+}
+
+.modern-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.modern-btn:disabled {
+  background-color: #c5c5c5;
+  cursor: not-allowed;
+}
+
+.comment-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.comment-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.modern-textarea {
+  width: 330px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.modern-textarea:hover {
+  border-color: #007bff;
+}
+
+.modern-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.15);
+}

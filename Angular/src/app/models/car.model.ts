@@ -1,3 +1,4 @@
+import { User } from "./user.model";
 
 export interface Car{
     id: number;
@@ -14,4 +15,5 @@ export interface Car{
     fiksnaCena: string;
     zamena: string;
     images: { id: number, imagePath: string}[];
+    user: User;
 }

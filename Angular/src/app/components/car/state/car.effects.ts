@@ -33,7 +33,8 @@ export class CarEffects {
                         cena: car.cena,
                         fiksnaCena: car.fiksnaCena,
                         zamena: car.zamena,
-                        images: imageUrls
+                        images: imageUrls,
+                        user: car.user
                     }
                     return addCarSucces({ car: carObj })  
                 }) 

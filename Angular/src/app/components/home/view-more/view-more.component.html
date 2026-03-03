@@ -38,11 +38,60 @@
     </div>
   </div>
 </div>
-<div class="divRegistracijaKasko">
-  <div class="divReg">
-    Cena registracije ovog vozila: od <span class="zelenaBoja"> {{registration}} </span> do <span class="zelenaBoja"> {{registration + 20000}} </span> 
+<div class="divRecenzijeiKasko">
+  <div class="divRegistracijaKasko">
+    <div class="divReg">
+      Cena registracije ovog vozila: od <span class="zelenaBoja"> {{registration}} </span> do <span class="zelenaBoja"> {{registration + 20000}} </span> 
+    </div>
+    <div class="divKasko">
+      Cena KASKO osiguranja za ovo vozilo: od <span class="zelenaBoja"> {{kasko}} </span> do <span class="zelenaBoja"> {{kasko + 70000}} </span> 
+    </div>
   </div>
-  <div class="divKasko">
-    Cena KASKO osiguranja za ovo vozilo: od <span class="zelenaBoja"> {{kasko}} </span> do <span class="zelenaBoja"> {{kasko + 70000}} </span> 
+  <div class="divRecenzije">
+    <div *ngIf="car">
+    <form (ngSubmit)="submitReview()" #reviewForm="ngForm" style="margin-left: 5px;">
+
+      <!-- OCENA -->
+          <div class="rating-row">
+      <label for="rating" class="rating-label">Ocena:</label>
+
+      <select 
+        id="rating" 
+        name="rating" 
+        [(ngModel)]="reviewRating" 
+        required
+        class="modern-select-small">
+        
+        <option value="" disabled selected>Izaberite</option>
+        <option *ngFor="let r of [1,2,3,4,5]" [value]="r">
+          {{ r }}
+        </option>
+      </select>
+            <!-- DUGME -->
+      <div class="button-wrapper" style="margin-left: 5px;">
+          <button 
+        type="submit" 
+        [disabled]="!reviewRating"
+        class="modern-btn">
+        
+        Dodaj recenziju
+      </button>
+      </div>
+      </div>
+      <!-- KOMENTAR -->
+      <div class="comment-group">
+        <label for="comment" class="comment-label">Komentar:</label>
+
+        <textarea
+          id="comment"
+          name="comment"
+          [(ngModel)]="reviewComment"
+          placeholder="Unesite komentar..."
+          rows="2"
+          class="modern-textarea">
+        </textarea>
+      </div>
+    </form>
   </div>
 </div>
+
