@@ -29,12 +29,10 @@
 }
 
 .divInfo{
-    border: 3px solid #1f1f1f;
     height: 200px;
     width: 200px;
     border-radius: 40px;
     margin-top: 20px;
-    background-color: rgba(255, 165, 0, 0.6);
 }
 
 .divInfoVideo{
@@ -55,7 +53,122 @@
 .videoDiv{
     margin-top: 20px;
 }
+/* Container za reviews sekciju sa fiksnom visinom */
+.reviewsContainer {
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    background: #fafafa;
 
+    display: flex;
+    flex-direction: column;
+    max-height: 270px; /* fiksna visina za scroll */
+    max-width: 280%;
+}
+
+/* Header i prosečna ocena ostaje ista */
+.reviewsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.reviewsHeader h3{
+    font-size:16px;
+    margin:0;
+}
+
+.averageRating{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.ratingNumber{
+    font-size:18px;
+    font-weight:600;
+}
+
+.stars mat-icon{
+    font-size:18px;
+    height:18px;
+    width:18px;
+    color:#FFC107;
+}
+
+/* Lista recenzija koja skroluje */
+.reviewsList {
+    flex: 1;             /* zauzima sav preostali prostor */
+    overflow-y: auto;    /* vertikalni scroll kada ima više recenzija */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;  /* da scrollbar ne preklapa sadržaj */
+}
+.reviewCard{
+    padding:8px 10px;
+    border-radius:8px;
+    background:#fff;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08);
+    width: 80%;
+}
+
+.reviewTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.reviewerName{
+    font-size:13px;
+    font-weight:600;
+}
+
+.starsSmall mat-icon{
+    font-size:15px;
+    height:15px;
+    width:15px;
+    color:#FFC107;
+}
+
+.reviewComment{
+    font-size:13px;
+    margin-top:3px;
+    color:#444;
+}
+
+.reviewDate{
+    font-size:11px;
+    color:gray;
+    margin-top:2px;
+}
+
+.noReviews{
+    font-size:13px;
+    color:gray;
+}
+
+/* Opcionalno: stil scroll bara */
+.reviewsList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reviewsList::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.reviewsList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.div123 {
+    width: 180%;;
+}
 
 
 

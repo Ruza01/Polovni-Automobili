@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { createReviewSuccess, loadReviewsSuccess } from "./reviews.action";
+import { createReviewSuccess, loadAverageRatingSuccess, loadReviewsSuccess } from "./reviews.action";
 import { initialState, ReviewsState } from "./reviews.state";
 
 export const reviewsReducer = createReducer(
@@ -11,6 +11,10 @@ export const reviewsReducer = createReducer(
   on(createReviewSuccess, (state, { review }) => ({
     ...state,
     reviews: [review, ...state.reviews],
+  })),
+  on(loadAverageRatingSuccess, (state, { averageRating }) => ({
+    ...state,
+    averageRating
   }))
 );
 

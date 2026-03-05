@@ -12,9 +12,88 @@
     margin-top: 5px;
 }
 
-.divModeli{
-    margin-left: 10px;
-    margin-top: 2px;
-    font-weight: 500;
+.favoritesContainer {
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 15px;
+    background: #fafafa;
+    margin-top: 20px;
+    max-height: 250px; /* fiksna maksimalna visina */
+    overflow-y: auto;  /* vertikalni scroll ako ima više favorita */
+    width: 180%;
 }
 
+/* Kompaktni header */
+.favoritesContainer h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Lista favorita */
+.favoritesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Kartica jednog favorita */
+.favoriteCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* Slika automobila */
+.favoriteImage img {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Informacije o autu */
+.favoriteInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.carName {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.carDetails {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Dugme za brisanje */
+button mat-icon {
+    font-size: 18px;
+}
+
+/* Poruka kada nema favorita */
+.noFavorites {
+    font-size: 13px;
+    color: gray;
+    margin-top: 5px;
+}
+
+/* Scroll bar stil (opciono) */
+.favoritesContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.favoritesContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.favoritesContainer::-webkit-scrollbar-track {
+    background: transparent;
+}

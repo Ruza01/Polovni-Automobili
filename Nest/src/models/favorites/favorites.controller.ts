@@ -28,7 +28,7 @@ export class FavoritesController {
     return this.favoritesService.getUserFavorites(req.user.id);
   }
 
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.MEMBER)
   @Delete(':carId')
   remove(@Req() req, @Param('carId') carId: number) {
     return this.favoritesService.remove(req.user.id, carId);

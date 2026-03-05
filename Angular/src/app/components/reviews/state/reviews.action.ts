@@ -6,3 +6,6 @@ export const loadReviewsSuccess = createAction('[Reviews] Load Reviews Success',
 
 export const createReview = createAction('[Reviews] Create Review', props<{ reviewedUserId: number; rating: number; comment?: string }>());
 export const createReviewSuccess = createAction('[Reviews] Create Review Success', props<{ review: Review }>());
+
+export const loadAverageRating = createAction('[Reviews] Load Average Rating', props<{ userId: number }>());
+export const loadAverageRatingSuccess = createAction('[Reviews] Load Average Rating Success', props<{ averageRating: number }>());

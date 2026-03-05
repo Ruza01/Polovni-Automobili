@@ -1,13 +1,30 @@
 <div class="container3232">
-    <div class="header123">
-        Najtrazeniji modeli
+    <div class="favoritesContainer" *ngIf="favorites$ | async as favorites">
+
+    <h3>Moji favoriti</h3>
+
+    <div *ngIf="favorites.length === 0" class="noFavorites">
+        Još uvek nema favorita.
     </div>
-    <div class="divModeli">
-        Audi A4<br>
-        Audi A3<br>
-        Golf 5<br>
-        Skoda Octavia<br>
-        Renault clio<br>
-        BMW 3<br>
+
+    <div class="favoritesList">
+        <div class="favoriteCard" *ngFor="let fav of favorites">
+            
+            <div class="favoriteImage">
+                <img [src]="fav.car.images[0]?.imagePath" alt="{{ fav.car.model }}">
+            </div>
+
+            <div class="favoriteInfo">
+                <div class="carName">{{ fav.car.model }}</div>
+                <div class="carDetails">{{ fav.car.model }} • {{ fav.car.godiste }}</div>
+            </div>
+
+            <button mat-icon-button color="warn" (click)="removeFavorite(fav.car.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+        </div>
     </div>
+
+</div>
 </div>

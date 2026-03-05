@@ -14,7 +14,7 @@ export class FavoritesService {
   }
 
   getFavorites(): Observable<Favorites[]>{
-    return this.httpClient.get<Favorites[]>(`${api}/favorites/getUserFavorites`);
+    return this.httpClient.get<Favorites[]>(`${api}/favorites`);
   }
 
   addToFavorites(carId: number): Observable<Favorites> {
@@ -23,6 +23,12 @@ export class FavoritesService {
         return throwError(() => err); 
       })
    );
+  }
+
+  removeFavorite(carId: number): Observable<any> {
+    return this.httpClient.delete(`${api}/favorites/${carId}`).pipe(
+      catchError(err => throwError(() => err))
+    );
   }
 
 }

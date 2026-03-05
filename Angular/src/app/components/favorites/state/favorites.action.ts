@@ -9,3 +9,5 @@ export const addFavorite = createAction('[Favorites] Add', props<{ carId: number
 export const addFavoriteSuccess = createAction('[Favorites] Add Favorite Success', props<{ favorite: Favorites }>());
 
 export const removeFavorite = createAction('[Favorites] Remove', props<{ carId: number }>());
+export const removeFavoriteSuccess = createAction('[Favorites] Remove Success', props<{ carId: number }>());
+export const removeFavoriteFailure = createAction('[Favorites] Remove Failure', props<{ error: any }>());

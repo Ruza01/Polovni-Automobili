@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
 import { ReviewsService } from "../reviews.service";
-import { createReview, createReviewSuccess, loadReviews, loadReviewsSuccess } from "./reviews.action";
+import { createReview, createReviewSuccess, loadAverageRating, loadAverageRatingSuccess, loadReviews, loadReviewsSuccess } from "./reviews.action";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { Review } from "src/app/models/Interfaces/reviews-interface";
 
@@ -44,6 +44,18 @@ export class ReviewsEffect {
             // vrati prazan observable da efekat ne pukne
             return of();
             })
+        )
+        )
+    )
+    );
+
+    loadAverageRating$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(loadAverageRating),
+        switchMap(action =>
+        this.reviewsService.getAverageRating(action.userId).pipe(
+            map(avg => loadAverageRatingSuccess({ averageRating: avg })),
+            catchError(() => of())
         )
         )
     )

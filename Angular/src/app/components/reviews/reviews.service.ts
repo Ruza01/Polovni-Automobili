@@ -24,4 +24,8 @@ export class ReviewsService {
       })
     );
   }
+
+  getAverageRating(userId: number): Observable<number>{
+    return this.httpClient.get<number>(`${api}/reviews/user/${userId}/average`);
+  }
 }

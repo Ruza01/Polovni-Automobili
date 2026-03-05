@@ -11,12 +11,51 @@
             <div class="divDodajSbojOglas">
                 <button *ngIf="isNotVisitor(user$ | async)" mat-button id="basicButton3" (click)="openForm()">Dodaj svoj oglas !</button>
             </div>
+            <div class="div123">
+                <div class="reviewsContainer">
+
+    <div class="reviewsHeader">
+        <h3>Prosecna ocena</h3>
+        <div class="averageRating" *ngIf="averageRating$ | async as avg">
+
+            <span class="ratingNumber">{{ avg }}</span>
+
+            <div class="stars">
+                <mat-icon *ngFor="let star of [1,2,3,4,5]">
+                    {{ star <= avg ? 'star' : 'star_border' }}
+                </mat-icon>
+            </div>
         </div>
     </div>
-    <div *ngIf="showContent" class="divAddCarImage">
-        <app-add-car-image></app-add-car-image>
-        <div>
-            <app-add-car-modal *ngIf="showContent" (formClosed)="onFormClosed()"></app-add-car-modal>
+    <div class="reviewsList" *ngIf="reviews$ | async as reviews">
+        <div *ngIf="reviews.length === 0" class="noReviews">
+            Još uvek nema recenzija.
         </div>
+        <div class="reviewCard" *ngFor="let review of reviews">
+            <div class="reviewTop">
+                <span class="reviewerName">{{ review.reviewer?.username }}</span>
+                <div class="starsSmall">
+                    <mat-icon *ngFor="let star of [1,2,3,4,5]">
+                        {{ star <= review.rating ? 'star' : 'star_border' }}
+                    </mat-icon>
+                </div>
+                </div>
+                <div class="reviewComment">
+                    {{ review.comment }}
+                    </div>
+                        <div class="reviewDate">
+                            {{ review.createdAt | date:'dd.MM.yyyy' }}
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div *ngIf="showContent" class="divAddCarImage">
+                <app-add-car-image></app-add-car-image>
+                <div>
+                    <app-add-car-modal *ngIf="showContent" (formClosed)="onFormClosed()"></app-add-car-modal>
+            </div>
     </div>
 </div>
