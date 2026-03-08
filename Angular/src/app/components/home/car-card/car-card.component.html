@@ -19,8 +19,8 @@
           <div>{{car.godiste}}</div>
         </div>
         </div>
-      <div class="divDugmici">
-        <button *ngIf="isAdmin$! | async" mat-icon-button id="deleteButton" (click)="deleteCar(car)">
+      <div class="divDugmici" *ngIf="allowedToFavorite$ | async">
+        <button *ngIf="isAdmin$! | async" mat-icon-button id="deleteButton" (click)="deleteCar(car)"> 
           <mat-icon>delete</mat-icon>
         </button>
         <button (click)="addToFavorites(car.id)" class="favDiv">

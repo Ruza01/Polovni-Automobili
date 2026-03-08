@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Car } from 'src/app/models/car.model';
 import { selectAllCars, selectAllImages } from '../../car/state/car.selector';
 import { deleteCar, getCars } from '../../car/state/car.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { hasRole } from '../../user-auth/state/auth.selector';
+import { getUserRole, hasRole } from '../../user-auth/state/auth.selector';
 import { addFavorite } from '../../favorites/state/favorites.action';
 
 @Component({
@@ -21,11 +21,18 @@ export class CarCardComponent implements OnInit{
   cars$: Observable<Car[]>;
   images$: Observable<string[]>;
   isAdmin$!: Observable<boolean>;
+  allowedToFavorite$!: Observable<boolean>
 
   constructor(private store: Store, private snackBar: MatSnackBar){
     this.cars$ = this.store.select(selectAllCars);
     this.images$ = this.store.select(selectAllImages);
+
+    this.allowedToFavorite$ = this.store.select(getUserRole).pipe(
+    map(role => role === 'ADMIN' || role === 'MEMBER')
+  );
   }
+
+
 
   toggleContent(car: Car){
     this.selectedCar = car;

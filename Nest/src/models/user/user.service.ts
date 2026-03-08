@@ -15,7 +15,7 @@ export class UserService{
 
     async doUserRegistration(userRegister: UserRegisterRequestDto): Promise<User> {
         
-        const salt = await bcrypt.genSalt(); //salt - slucajna vrednost
+        const salt = await bcrypt.genSalt(); 
         const password = await bcrypt.hash(userRegister.password, salt);
 
         const user = new User();

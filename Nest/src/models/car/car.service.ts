@@ -35,10 +35,7 @@ export class CarService {
     }
 
     async deleteCar(id: number) {
-          const car = await this.carRepository.findOne({ where: { id } });    
-          
           await this.imgRepository.delete(id);
-    
           
           const result = await this.carRepository.delete(id);
           return result;
@@ -67,7 +64,6 @@ export class CarService {
             car.user = user;
             
             const savedCar = await this.carRepository.save(car);
-
         
             for (const imagePath of carDto.images) {
                 const carImage = new carImages();
@@ -76,7 +72,6 @@ export class CarService {
                 await this.carImagesRepository.save(carImage);
               }
             
-      
             return savedCar;
 
         }catch(e){

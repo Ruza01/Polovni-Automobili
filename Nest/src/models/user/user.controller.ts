@@ -70,6 +70,7 @@ export class UserController {
         
         const user = await this.userService.getUserById(id);
         let imagePath;
+        
         if(user.profileImagePath != null){
             imagePath = `${process.cwd()}/uploads/carImages/${id}/${user.profileImagePath}`; 
         }
@@ -82,24 +83,19 @@ export class UserController {
 
     @Put('update/:id')
     updateUserField(@Param('id', ParseIntPipe) id: number, @Body() updateData: UpdateFieldDto) {
-      console.log('Received ID:', id);
-      console.log('Received Body:', updateData);
-      console.log('Received Body:', updateData.field);
-      console.log('Received Body:', updateData.value);
       return this.userService.updateUserField(id, updateData.field, updateData.value);
     }
 }
 
-function deleteFiles(path:string){
-    readdir(path, (err, files) => {
-        if(err) throw new BadRequestException("could not read directory");
+    function deleteFiles(path:string){
+        readdir(path, (err, files) => {
+            if(err) throw new BadRequestException("could not read directory");
 
-        files.forEach(file => {
-            const file_path = path + "/" + file;
-            unlink(file_path, (err) => {
-                if(err) throw new BadRequestException("Could not delete file");
-                console.log("Deleted" + file_path);
-            });
+            files.forEach(file => {
+                const file_path = path + "/" + file;
+                unlink(file_path, (err) => {
+                    if(err) throw new BadRequestException("Could not delete file");
+                });
+            })
         })
-    })
 }

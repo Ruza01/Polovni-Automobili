@@ -7,7 +7,7 @@ export const selectCarState = createFeatureSelector<CarState>(CAR_STATE_NAME);
 
 export const selectCarImages = createSelector(
   selectCarState,
-  (state: CarState) => state.images
+  (state: CarState) => state.images 
 );
 
 export const selectAllCars = createSelector(

@@ -14,12 +14,7 @@ export class FavoritesController {
   @Post()
   @Roles(Role.ADMIN, Role.MEMBER)
   add(@Req() req, @Body() createFavoriteDto: CreateFavoriteDto) {
-    console.log(req);
-    console.log(createFavoriteDto);
-    return this.favoritesService.addToFavorites(
-      req.user.id,
-      createFavoriteDto.carId
-    );
+    return this.favoritesService.addToFavorites(req.user.id, createFavoriteDto.carId);
   }
 
   @Get()

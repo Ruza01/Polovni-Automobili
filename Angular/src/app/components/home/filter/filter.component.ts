@@ -42,7 +42,6 @@ export class FilterComponent implements OnInit{
   }
 
   onSelectFilter(value: string, filterType: string) {
-    console.log(`Selected ${filterType}: ${value}`);
     this.store.dispatch(getCarsByFilter({ value, filterType }));
   }
 

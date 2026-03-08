@@ -1,4 +1,4 @@
-import { Controller, Post, Get, UseInterceptors, UploadedFiles, Param, ParseIntPipe, Res, Patch, Body, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Post, Get, Param, ParseIntPipe, Res, Patch, Body, Delete, Query, UseGuards } from '@nestjs/common';
 import { CarService } from './car.service';
 import { carDto } from './DTOs/car.dto';
 import { Roles } from '../auth/decorators/role-decorator';

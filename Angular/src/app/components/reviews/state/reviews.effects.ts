@@ -32,16 +32,12 @@ export class ReviewsEffect {
         switchMap(action =>
         this.reviewsService.createReview(action.reviewedUserId, action.rating, action.comment).pipe(
             tap(() => {
-            // obaveštenje korisniku da je review poslat
             this.snackBar.open('Uspešno ste dodali recenziju!', 'Zatvori', { duration: 3000 });
             }),
             map((review: Review) => createReviewSuccess({ review })),
             catchError((error) => {
-            // prikazi poruku o grešci
             const msg = error?.error?.message || 'Greška pri dodavanju recenzije';
             this.snackBar.open(msg, 'Zatvori', { duration: 5000 });
-
-            // vrati prazan observable da efekat ne pukne
             return of();
             })
         )

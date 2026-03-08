@@ -19,7 +19,6 @@ export class AuthEffects{
         exhaustMap((action) => {
             return this.authService.login(action.email, action.password).pipe(
                 tap(res => {
-                    // Čuvamo token u localStorage odmah posle login-a
                     localStorage.setItem('token', res.access_token);
                 }),
                 exhaustMap(data => {

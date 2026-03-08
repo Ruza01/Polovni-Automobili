@@ -2,15 +2,13 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { addCar, addCarSucces, deleteCar, deleteCarSucces, getCars , getCarsByFilter, getCarsByFilterSuccess, getCarsSuccess } from "./car.action";
 import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
-import { Store } from "@ngrx/store";
 import { CarService } from "../car.service";
 import { Car } from "src/app/models/car.model";
-import { AppState } from "src/app/store/app.state";
 
 @Injectable()
 export class CarEffects {
 
-    constructor(private actions$: Actions, private store: Store<AppState>, private carService: CarService){
+    constructor(private actions$: Actions, private carService: CarService){
     }
 
     addCar$ = createEffect(() => {

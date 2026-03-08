@@ -16,7 +16,6 @@ const _carReducer = createReducer(initialState,
       on(getCarsSuccess, (state, { cars }) => ({
       ...state, 
       cars,
-      images: cars.flatMap(car => car.images) 
       })),
       on(getCarsByFilterSuccess, (state, { cars }) => ({
         ...state,
@@ -24,7 +23,7 @@ const _carReducer = createReducer(initialState,
         })),
       on(deleteCarSucces, (state, { carId }) => ({
         ...state,
-        cars: state.cars.filter(car => car.id !== carId)
+        cars: state.cars.filter(car => car.id !== carId) 
       }))
 )
 

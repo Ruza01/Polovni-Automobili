@@ -13,8 +13,6 @@ export class FavoritesService {
   }
 
   async addToFavorites(userId: number, carId: number){
-    console.log("usao u addtofavorites")
-
     const car = await this.carRepo.findOne( {where: { id: carId }} );
 
     const exists = await this.favoriteRepo.findOne({
@@ -32,8 +30,6 @@ export class FavoritesService {
       user: { id: userId },
       car
     })
-
-    console.log(favorite);
 
     return this.favoriteRepo.save(favorite);
   }
